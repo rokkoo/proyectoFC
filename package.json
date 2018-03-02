@@ -1,0 +1,25 @@
+{
+  "name": "prox",
+  "version": "1.0.0",
+  "description": "Proyecto de fin de grado.",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rokkoo/proyectoFC.git"
+  },
+  "author": "Alfonso,Unai,Adrian,Ander",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rokkoo/proyectoFC/issues"
+  },
+  "homepage": "https://github.com/rokkoo/proyectoFC#readme"
+}
