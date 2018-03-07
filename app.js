@@ -8,17 +8,23 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 //Importamos nuestros controllers
-//var api = require('./routes/favorito');
+var index = require('./controllers/index');
 
 var view = '/views';
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(express.static('public'));
 
-app.get('/', function(req, res){
-  res.send('Hola mundo');
+app.use(express.static('public'));
+//Nuestro sistema de templates - EJS
+app.set('view engine', 'ejs')
+app.set('views', 'views');
+ 
+//Rutas
+app.get('/', index.index);
+app.get('/mundo', function(req, res){
+res.send('Hola mundo');
 //Root en el que se a buscar el archivo
 //res.sendFile('header.html', { root: './views' })
 });
