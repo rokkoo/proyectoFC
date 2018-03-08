@@ -1,5 +1,5 @@
 'use strict';
-const mongoose = require('./../config/mongoose/con'),
+const mongoose = require('./../config/mongoose/conn'),
   userSchema = require('./../app/schemas/users').userSchema;
 
 const models = {
