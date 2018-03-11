@@ -4,8 +4,7 @@ const mongoose = require('./../config/mongoose/conn'),
 
 const models = {
 
-User: mongoose.model('user', userSchema)
-
+User: mongoose.model('user', userSchema),
 };
 
 module.exports = models;

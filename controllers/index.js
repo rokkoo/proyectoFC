@@ -4,7 +4,7 @@ alfonso.save().then(() => console.log(alfonso.username));
 //Request - response
 exports.index = function(req, res) {
     var nombrePagina = 'ADOPTAPP';
-    res.render('index',{
+    res.render('addAnimal',{
         //Objeto
         pagina : nombrePagina
     });

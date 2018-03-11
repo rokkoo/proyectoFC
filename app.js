@@ -1,16 +1,16 @@
-var app = require('express')();
+//var app = require('express')();
 var bodyParser = require('body-parser');
 var express = require('express');
 
-
-
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
 //Importamos nuestros controllers
 var index = require('./controllers/index');
-
+var mascotForm = require('./controllers/addMascot')
 var view = '/views';
+
+var app = express();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+var router = express.Router();
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
 app.use(bodyParser.urlencoded({extended:true}));
@@ -22,6 +22,8 @@ app.set('view engine', 'ejs')
 app.set('views', 'views');
  
 //Rutas
+app.use('/nuevaMascota',mascotForm);
+
 app.get('/', index.index);
 app.get('/mundo', function(req, res){
 res.send('Hola mundo');
