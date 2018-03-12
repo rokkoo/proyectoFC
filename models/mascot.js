@@ -7,7 +7,7 @@ let mascotSchema = new Schema({
     dueño: {type: String},
     edad: { type: Number, min: 0 },
     info: {type: String},
-    img: {type: String},
+    url: {type: String},
     date: { type: Date, default: Date.now },
     comments: [{ body: String, date: Date }],
 }, { versionKey: false });

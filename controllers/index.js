@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     .sort('-_id') // ordenamos de manera ascendente
     .exec((err, mascotas) => { 
         if(err) throw err;
-        console.log({ mascotas : mascotas});
+        //console.log({ mascotas : mascotas});
         var nombrePagina = 'ADOPTAPP';
         res.render('index',{
             //Objeto
