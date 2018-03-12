@@ -1,9 +1,14 @@
 let express = require('express');
 let router = express.Router();
 
+/** Imagen uploader*/
+var cloudinary = require('./../config/cloudinary/cloudinary');
+
+/** db conection */
 const mongoose = require('./../config/mongoose/conn');
 var Mascot = require('./../models/mascot');
 
+/** Cloudinary - Configuracion */
 
 router.get('/', (req, res, next) => {
         var nombrePagina = 'ADOPTAPP';

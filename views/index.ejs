@@ -15,49 +15,27 @@
                                 <h3 class="title">Adopta</h3>
                             </div>
                             <!-- ¡Aqui ponemos el contenido de la pagina! -->
+                                     <!-- Row start -->
+                                    <div class="row">
+                                        <% mascotas.forEach(function(mascota){ %>
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title"><%- mascota.nombre %></h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Información: <%- mascota.info %></p>
+                                                    <p>Edad: <%- mascota.edad %></p>
+                                                    <p>Fecha del post: <%- mascota.date %></p>
 
-                            <div class="row">
-                                <div class="col-lg-8">
-
-                                    <div class="portlet">
-                                        <!-- /primary heading -->
-                                        <div class="portlet-heading">
-                                            <h3 class="portlet-title text-dark text-uppercase">
-                                                Projects
-                                            </h3>
-                                            <div class="portlet-widgets">
-                                                <a href="javascript:;" data-toggle="reload">
-                                                    <i class="ion-refresh"></i>
-                                                </a>
-                                                <span class="divider"></span>
-                                                <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2">
-                                                    <i class="ion-minus-round"></i>
-                                                </a>
-                                                <span class="divider"></span>
-                                                <a href="#" data-toggle="remove">
-                                                    <i class="ion-close-round"></i>
-                                                </a>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div id="portlet2" class="panel-collapse collapse in">
-                                            <div class="portlet-body">
-                                                <div class="table-responsive">
-                                                    <tr>
-                                                        <% mascotas.forEach(function(mascota){ %>
-                                                           <td> <%- mascota.nombre %> </td>
-                                                        <% }); %>
-                                                        </tr>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
+                                        <% }); %>
+                                    </div><!-- End of Row -->
 
-
-                            </div>
-                            <!-- End row -->
+                        </div>
+                        <!-- End row -->
 
                         </div>
                         <!-- Page Content Ends -->

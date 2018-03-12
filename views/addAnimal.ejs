@@ -21,7 +21,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="panel-title">Agregar nueva adopción</h3></div>
                             <div class="panel-body">
-                                <form class="form-horizontal" role="form" action="/nuevaMascota/adopcion/nueva" method="POST">                                                                       
+                                <form class="form-horizontal" role="form" action="/nuevaMascota/adopcion/nueva" method="POST" enctype="multipart/form-data">                                                                     
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">Nombre</label>
                                         <div class="col-md-10">
@@ -41,7 +41,7 @@
                                         </div>
                                     </div> 
                                     <div class="fallback">
-                                        <input name="file" type="file" multiple />
+                                        <input name="mascotaImg" id="mascotaImg" type="file" multiple />
                                       </div>    
                                       <button class="btn btn-success" type="submit">Agregar</button>                 
                                 </form>
