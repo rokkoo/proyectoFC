@@ -1,11 +1,12 @@
 //var app = require('express')();
 var bodyParser = require('body-parser');
 var express = require('express');
-
+//hola alfonso
 //Importamos nuestros controllers
 var index = require('./controllers/index');
 var mascotForm = require('./controllers/addMascot')
 var userForm = require('./controllers/UserController')
+var loginForm = require('./controllers/LoginController')
 var view = '/views';
 
 var app = express();
@@ -24,14 +25,9 @@ app.set('views', 'views');
  
 //Rutas
 app.use('/',index);
+app.use('/login', loginForm);
 app.use('/nuevaMascota',mascotForm);
-app.use('/nuevoUsuario',userForm.nuevo);
-
-app.get('/mundo', function(req, res){
-res.send('Hola mundo');
-//Root en el que se a buscar el archivo
-//res.sendFile('header.html', { root: './views' })
-});
+app.use('/registrate', userForm);
 
 //Conexion con el socket
 io.on('connection', function(socket){

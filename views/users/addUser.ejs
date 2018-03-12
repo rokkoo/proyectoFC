@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <% include ./layouts/head %>
-    <% include ./layouts/imports %>
+    <% include ../layouts/head %>
+    <% include ../layouts/imports %>
     <body>
-        <% include ./layouts/menuLateral %>
+        <% include ../layouts/menuLateral %>
         <!--Main Content Start -->
         <section class="content">
             <!-- Page Content Start -->
             <!-- ================== -->
-            <% include ./layouts/topNav %>
+            <% include ../layouts/topNav %>
             <div class="wraper container-fluid">
                 <div class="page-title"> 
                     <h3 class="title"><%= pagina %></h3> 
                 </div>
-                <!-- ¡Aqui ponemos el contenido de la pagina! -->
-                <div class="btn btn-primary">Nuevo</div>
                  <!-- Formulario -->
                  <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="panel-title">Agregar nuevo usuario</h3></div>
                             <div class="panel-body">
-                                <form class="form-horizontal" role="form" action="nueva" method="POST">                                                                       
+                                <form class="form-horizontal" role="form" action="/registrate/nuevo" method="POST">                                                                       
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">Nombre</label>
                                         <div class="col-md-10">
@@ -62,6 +60,6 @@
         <!--form validation init-->
         <script src="assets/jquery.validate/form-validation-init.js"></script>
 
-        <% include ./layouts/scripts %>
+        <% include ../layouts/scripts %>
     </body>
 </html>
