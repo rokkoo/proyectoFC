@@ -4,16 +4,13 @@
   "description": "Proyecto de fin de grado.",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
-<<<<<<< HEAD
     "cloudinary": "^1.10.0",
     "ejs": "^2.5.6",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "mdbootstrap": "^4.5.0",
-=======
-    "ejs": "^2.5.6",
-    "express": "^4.16.2",
->>>>>>> 02215d9e55d831bb69b1924994d604e9fc1b4129
     "mongodb": "^3.0.4",
     "mongoose": "^5.0.9",
     "socket.io": "^2.0.4"

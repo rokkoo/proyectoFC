@@ -6,12 +6,24 @@ var index = require('./controllers/index');
 var mascotForm = require('./controllers/addMascot')
 var userForm = require('./controllers/UserController')
 var loginForm = require('./controllers/LoginController')
+var session = require('express-session')
+
 var view = '/views';
 
 var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var router = express.Router();
+
+function requiresLogin(req, res, next) {
+  if (req.session && req.session.userId) {
+    return next();
+  } else {
+    var err = new Error('You must be logged in to view this page.');
+    err.status = 401;
+    return next(err);
+  }
+}
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
 app.use(bodyParser.urlencoded({extended:true}));
@@ -23,10 +35,17 @@ app.set('view engine', 'ejs')
 app.set('views', 'views');
  
 //Rutas
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false
+}));
+
+
 app.use('/',index);
 app.use('/login', loginForm);
 app.use('/nuevaMascota',mascotForm);
-app.use('/registrate', userForm);
+app.use('/registrate', requiresLogin , userForm);
 
 //Conexion con el socket
 io.on('connection', function(socket){
