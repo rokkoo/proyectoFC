@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../layouts/head %>
+    <% include ../layouts/imports %>
+    <body>
+        <% include ../layouts/menuLateral %>
+        <!--Main Content Start -->
+        <section class="content">
+            <!-- Page Content Start -->
+            <!-- ================== -->
+            <% include ../layouts/topNav %>
+            <div class="wraper container-fluid">
+                <div class="page-title"> 
+                    <h3 class="title"><%= pagina %></h3> 
+                </div>
+                 <!-- Formulario -->
+                 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h3 class="panel-title">Agregar nuevo usuario</h3></div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" role="form" action="/registrate/nuevo" method="POST">                                                                       
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Nombre</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Apellido</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="apellido" name="apellido" class="form-control" placeholder="apellido">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">E-mail</label>
+                                        <div class="col-md-10">
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Apellido">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Contraseña</label>
+                                        <div class="col-md-10">
+                                            <input type="password" id="contraseña" name="contrasena" class="form-control" placeholder="Escribe aquí tu contraseña">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Confirmar Contraseña</label>
+                                        <div class="col-md-10">
+                                            <input type="password" id="confirmarContraseña" name="confirmarContrasena" class="form-control" placeholder="Vuelve a escribir aquí tu contraseña">
+                                        </div>
+                                    </div>                                                                           
+                                      <button class="btn btn-success" type="submit">Agregar</button>                 
+                                </form>
+                            </div> <!-- panel-body -->
+                        </div> <!-- panel -->
+                    </div> <!-- col -->
+                </div> <!-- End row -->
+
+            </div>
+            <!-- Page Content Ends -->
+            <!-- ================== -->
+
+            <!-- Footer Start -->
+            <footer class="footer">
+                2015 © Velonic.
+            </footer>
+            <!-- Footer Ends -->
+
+
+
+        </section>
+        <!-- Main Content Ends -->
+        
+        <!--form validation-->
+        <script type="text/javascript" src="assets/jquery.validate/jquery.validate.min.js"></script>
+
+        <!--form validation init-->
+        <script src="assets/jquery.validate/form-validation-init.js"></script>
+
+        <% include ../layouts/scripts %>
+    </body>
+</html>

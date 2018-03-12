@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ./layouts/head %>
+    <% include ./layouts/imports %>
+    <body>
+        <% include ./layouts/menuLateral %>
+        <!--Main Content Start -->
+        <section class="content">
+            <!-- Page Content Start -->
+            <!-- ================== -->
+            <% include ./layouts/topNav %>
+            <div class="wraper container-fluid">
+                <div class="page-title"> 
+                    <h3 class="title"><%= pagina %></h3> 
+                </div>
+                <!-- ¡Aqui ponemos el contenido de la pagina! -->
+                <div class="btn btn-primary">Nuevo</div>
+                 <!-- Formulario -->
+                <h1>ENHORABUENA, <%= user.nombre %></h1>
+
+            </div>
+            <!-- Page Content Ends -->
+            <!-- ================== -->
+
+            <!-- Footer Start -->
+            <footer class="footer">
+                2015 © Velonic.
+            </footer>
+            <!-- Footer Ends -->
+
+
+
+        </section>
+        <!-- Main Content Ends -->
+        
+        <!--form validation-->
+        <script type="text/javascript" src="assets/jquery.validate/jquery.validate.min.js"></script>
+
+        <!--form validation init-->
+        <script src="assets/jquery.validate/form-validation-init.js"></script>
+
+        <% include ./layouts/scripts %>
+    </body>
+</html>

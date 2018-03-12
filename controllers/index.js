@@ -1,11 +1,21 @@
-var userDB = require('../models/models').User;
-const alfonso = new userDB({ username: 'Zildjian', password: '1234'});
-alfonso.save().then(() => console.log(alfonso.username));
-//Request - response
-exports.index = function(req, res) {
-    var nombrePagina = 'ADOPTAPP';
-    res.render('addAnimal',{
-        //Objeto
-        pagina : nombrePagina
+let express = require('express');
+let router = express.Router();
+
+var Mascot = require('./../models/mascot');
+const options = { sort: {nombre : 1}};
+/** Pagina de inicio */
+router.get('/', (req, res, next) => {
+    Mascot.find()
+    .sort('-_id') // ordenamos de manera ascendente
+    .exec((err, mascotas) => { 
+        if(err) throw err;
+        //console.log({ mascotas : mascotas});
+        var nombrePagina = 'ADOPTAPP';
+        res.render('index',{
+            //Objeto
+            pagina : nombrePagina,
+            mascotas : mascotas
+        });   
     });
-};
+});
+module.exports = router;
