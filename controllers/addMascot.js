@@ -4,6 +4,15 @@ let router = express.Router();
 const mongoose = require('./../config/mongoose/conn');
 var Mascot = require('./../models/mascot');
 
+
+router.get('/', (req, res, next) => {
+        var nombrePagina = 'ADOPTAPP';
+        res.render('addAnimal',{
+            //Objeto
+            pagina : nombrePagina,
+        });    
+});
+
 router.post('/adopcion/nueva', (req, res, next) => {
     //Elementos que se capturan en el body
     console.log(req.body);
