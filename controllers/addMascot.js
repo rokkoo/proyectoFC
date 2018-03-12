@@ -14,6 +14,7 @@ router.post('/adopcion/nueva', (req, res, next) => {
     });
     mascot.save();
     res.redirect('/');
+    // alfonso.save().then(() => console.log(alfonso.username));
 });
 
 module.exports = router;
