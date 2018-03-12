@@ -5,6 +5,7 @@ var express = require('express');
 //Importamos nuestros controllers
 var index = require('./controllers/index');
 var mascotForm = require('./controllers/addMascot')
+var userForm = require('./controllers/UserController')
 var view = '/views';
 
 var app = express();
@@ -23,8 +24,10 @@ app.set('views', 'views');
  
 //Rutas
 app.use('/nuevaMascota',mascotForm);
+app.use('/nuevoUsuario',userForm.nuevo);
 
 app.get('/', index.index);
+app.get('/enviarPrivado', );
 app.get('/mundo', function(req, res){
 res.send('Hola mundo');
 //Root en el que se a buscar el archivo
