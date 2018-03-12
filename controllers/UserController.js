@@ -34,10 +34,13 @@ router.post('/nuevo', (req, res, next) => {
     console.log(req.body);
     let user = new User({
         nombre: req.body.nombre,
-        edad: req.body.edad,
-        info: req.body.info
+        apellido: req.body.apellido,
+        email: req.body.email,
+        contrasena: req.body.contrasena,
+        confirmarContrasena: req.body.confirmarContrasena,
     });
     user.save();
+    req.session.userId = user._id;
     res.redirect('/enhorabuena');
     // alfonso.save().then(() => console.log(alfonso.username));
 });
