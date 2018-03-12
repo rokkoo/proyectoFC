@@ -22,9 +22,9 @@ app.set('view engine', 'ejs')
 app.set('views', 'views');
  
 //Rutas
+app.use('/',index);
 app.use('/nuevaMascota',mascotForm);
 
-app.get('/', index.index);
 app.get('/mundo', function(req, res){
 res.send('Hola mundo');
 //Root en el que se a buscar el archivo
