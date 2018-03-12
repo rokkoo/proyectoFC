@@ -6,6 +6,7 @@ var express = require('express');
 var index = require('./controllers/index');
 var mascotForm = require('./controllers/addMascot')
 var userForm = require('./controllers/UserController')
+var loginForm = require('./controllers/LoginController')
 var view = '/views';
 
 var app = express();
@@ -24,19 +25,9 @@ app.set('views', 'views');
  
 //Rutas
 app.use('/',index);
+app.use('/login', loginForm);
 app.use('/nuevaMascota',mascotForm);
-app.use('/nuevoUsuario',userForm.nuevo);
-
-<<<<<<< HEAD
-app.get('/', index.index);
-app.get('/enviarPrivado', );
-=======
->>>>>>> ea28d17cdcee724b8b36ae97f71c6acd0e5f5e2f
-app.get('/mundo', function(req, res){
-res.send('Hola mundo');
-//Root en el que se a buscar el archivo
-//res.sendFile('header.html', { root: './views' })
-});
+app.use('/registrate', userForm);
 
 //Conexion con el socket
 io.on('connection', function(socket){
