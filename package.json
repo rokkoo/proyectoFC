@@ -6,17 +6,12 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
-<<<<<<< HEAD
     "connect-multiparty": "^2.1.0",
     "ejs": "^2.5.6",
     "express": "^4.16.2",
-=======
     "cloudinary": "^1.10.0",
-    "ejs": "^2.5.6",
-    "express": "^4.16.2",
     "express-session": "^1.15.6",
     "mdbootstrap": "^4.5.0",
->>>>>>> registrarUsuarios
     "mongodb": "^3.0.4",
     "mongoose": "^5.0.9",
     "multer": "^1.3.0",
