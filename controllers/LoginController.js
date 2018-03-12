@@ -23,10 +23,7 @@ router.post('/logueando', (req, res, next) => {
           } else {
             req.session.userId = user._id;
             res.locals.user = user.nombre;
-            return res.render('/registrate', {
-                layout:false,
-                session: req.session
-            });
+            return res.redirect('/registrate');
           }
         });
       } else {

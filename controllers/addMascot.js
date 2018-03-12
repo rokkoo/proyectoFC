@@ -36,7 +36,7 @@ router.post('/adopcion/nueva', (req, res, next) => {
 
     is.on('end', function () {
         //eliminamos el archivo temporal
-        fs.unlink(path);
+        //fs.unlink(path);
 
         /** Subimos la imagen a cloudinary */
         cloudinary.uploader
