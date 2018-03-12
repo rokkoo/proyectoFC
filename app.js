@@ -1,7 +1,6 @@
 //var app = require('express')();
 var bodyParser = require('body-parser');
 var express = require('express');
-//hola alfonso
 //Importamos nuestros controllers
 var index = require('./controllers/index');
 var mascotForm = require('./controllers/addMascot')
