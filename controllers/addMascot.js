@@ -52,7 +52,11 @@ router.post('/adopcion/nueva', (req, res, next) => {
                 res.redirect('/');
             });
     });
-
+    /**
+     * TODOS
+     * meter mas de una imagen
+     * cargar con un virtual schema si no tiene imagen asiganada
+     */
     // alfonso.save().then(() => console.log(alfonso.username));
 });
 
