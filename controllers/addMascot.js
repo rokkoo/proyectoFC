@@ -1,8 +1,8 @@
 let express = require('express');
 let router = express.Router();
-var http = require('http');
-var io = require('socket.io');
+var redis = require('redis');
 
+var client = redis.createClient();
 /** Imagen uploader*/
 var cloudinary = require('./../config/cloudinary/cloudinary');
 
@@ -24,7 +24,6 @@ router.get('/', (req, res, next) => {
 router.post('/adopcion/nueva', (req, res, next) => {
     //Elementos que se capturan en el body
     //console.log(req.files.mascotaImg);
-    io(req.server);
     //El modulo 'fs' (File System) que provee Nodejs nos permite manejar los archivos
     var fs = require('fs')
 
@@ -51,7 +50,12 @@ router.post('/adopcion/nueva', (req, res, next) => {
                     info: req.body.info,
                     url: result.url
                 });
-                mascot.save();
+                mascot.save()
+                .then((val) =>{
+                    client.publish('images',mascot);
+                },(res) =>{
+                    console.log('La imagen no fue guardada');
+                });
                 res.redirect('/');
             });
     });

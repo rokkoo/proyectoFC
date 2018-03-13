@@ -1,6 +1,8 @@
 module.exports = function (server) {
 'use strict';
 var io = require('socket.io')(server);
+var redis = require('redis');
+
 /*
 io.use( (socket, next) =>{
     /** Middleware de session 
@@ -9,14 +11,13 @@ io.use( (socket, next) =>{
 
 //Conexion con mensajes N-N
 io.on('connection', function(socket){
-    console.log('sockets');
+    console.log('Cliente conectado');
+    var client = redis.createClient();
+    client.subscribe('images');
 
-    socket.on('chat message', function(msg){
-      io.emit('chat message', msg);
-    });
-
-    socket.on('nuevo post', function(msg){
-        io.emit('nuevo post', msg);
+    client.on('message', function(channel,msg){
+        console.log(msg);
+        client.emit('nuevo post', msg);
       });
   });
 }

@@ -14,7 +14,6 @@ var view = '/views';
 
 var app = express();
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
 var router = express.Router();
 realtime(http);
 function requiresLogin(req, res, next) {

@@ -1,6 +1,5 @@
 let express = require('express');
 let router = express.Router();
-var http = require('http');
 var Mascot = require('./../models/mascot');
 const options = { sort: {nombre : 1}};
 /** Pagina de inicio */
