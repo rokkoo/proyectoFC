@@ -7,8 +7,9 @@ var User = require('./../models/user');
 
 router.get('/', (req, res, next) => {
         var nombrePagina = 'USUARIOS';
+
         res.render('users/addUser',{
-            //Objeto
+            nombre: req.session.userId,
             pagina : nombrePagina,
         });    
 });

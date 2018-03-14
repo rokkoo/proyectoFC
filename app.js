@@ -5,7 +5,7 @@ var express = require('express');
 var index = require('./controllers/index');
 var mascotForm = require('./controllers/addMascot')
 var userForm = require('./controllers/UserController')
-var loginForm = require('./controllers/LoginController')
+var MainController = require('./controllers/MainController')
 var session = require('express-session')
 
 var view = '/views';
@@ -26,8 +26,8 @@ function requiresLogin(req, res, next) {
 }
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
-app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.static('public'));
 //Nuestro sistema de templates - EJS
@@ -42,10 +42,9 @@ app.use(session({
 }));
 
 
-app.use('/',index);
-app.use('/login', loginForm);
+app.use('/', MainController);
 app.use('/nuevaMascota',mascotForm);
-app.use('/registrate', requiresLogin , userForm);
+app.use('/home', requiresLogin , userForm);
 
 //Conexion con el socket
 io.on('connection', function(socket){
