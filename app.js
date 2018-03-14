@@ -9,14 +9,13 @@ var mascotForm = require('./controllers/addMascot')
 var userForm = require('./controllers/UserController')
 var loginForm = require('./controllers/LoginController')
 var session = require('express-session')
-
+var realtime = require('./config/realtime/realTime')
 var view = '/views';
 
 var app = express();
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
 var router = express.Router();
-
+realtime(http);
 function requiresLogin(req, res, next) {
   if (req.session && req.session.userId) {
     return next();
@@ -50,14 +49,14 @@ app.use('/',index);
 app.use('/login', loginForm);
 app.use('/nuevaMascota',mascotForm);
 app.use('/registrate', requiresLogin , userForm);
-
+/*
 //Conexion con el socket
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
 
-});
+});*/
 
 var port = process.env.PORT || 88;
 
