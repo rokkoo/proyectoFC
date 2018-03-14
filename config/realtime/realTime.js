@@ -1,23 +1,31 @@
 module.exports = function (server) {
-'use strict';
-var io = require('socket.io')(server);
-var redis = require('redis');
+    'use strict';
+    var io = require('socket.io')(server);
+    var redis = require('redis');
 
-/*
-io.use( (socket, next) =>{
-    /** Middleware de session 
-});
-*/
-
-//Conexion con mensajes N-N
-io.on('connection', function(socket){
-    console.log('Cliente conectado');
+    /*
+    io.use( (socket, next) =>{
+        /** Middleware de session 
+    });
+    */
     var client = redis.createClient();
-    client.subscribe('images');
+    var chat = redis.createClient();
 
-    client.on('message', function(channel,msg){
-        console.log(msg);
-        client.emit('nuevo post', msg);
-      });
-  });
+    client.subscribe('images');
+    client.subscribe('chat');
+
+    client.on('message', function (channel, msg) {
+        if (channel == 'images') {
+            // Canal de envio de nuevas imagenes
+            io.emit('nuevo post', msg);
+        }
+        if (channel == 'chat') {
+            // Mensaje para el chat N*N
+            io.emit('todos chat', msg);
+        }
+    });
+    //Conexion con mensajes N-N
+    io.on('connection', function (socket) {
+        console.log('Cliente conectado');
+    });
 }

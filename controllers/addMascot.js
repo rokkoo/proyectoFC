@@ -11,7 +11,7 @@ const mongoose = require('./../config/mongoose/conn');
 var Mascot = require('./../models/mascot');
 
 /** Cloudinary - Configuracion */
-var realtime = require('../config/realtime/realTime')
+var realtime = require('../config/realtime/realTime');
 
 router.get('/', (req, res, next) => {
         var nombrePagina = 'ADOPTAPP';
@@ -33,7 +33,7 @@ router.post('/adopcion/nueva', (req, res, next) => {
 
     var is = fs.createReadStream(path);
     var os = fs.createWriteStream(newPath);
-
+    var addedPet;
    is.pipe(os)
 
     is.on('end', function () {
@@ -50,9 +50,10 @@ router.post('/adopcion/nueva', (req, res, next) => {
                     info: req.body.info,
                     url: result.url
                 });
+                addedPet = mascot;
                 mascot.save()
                 .then((val) =>{
-                    client.publish('images',mascot);
+                    client.publish('images',JSON.stringify(addedPet));
                 },(res) =>{
                     console.log('La imagen no fue guardada');
                 });
