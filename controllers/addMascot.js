@@ -30,7 +30,6 @@ router.post('/adopcion/nueva', (req, res, next) => {
     var img = req.files.mascotaImg;
     var path = req.files.mascotaImg.path
     var newPath = './public/fotos/' + req.files.mascotaImg.originalFilename;
-
     var is = fs.createReadStream(path);
     var os = fs.createWriteStream(newPath);
     var addedPet;
@@ -42,7 +41,7 @@ router.post('/adopcion/nueva', (req, res, next) => {
 
         /** Subimos la imagen a cloudinary */
         cloudinary.uploader
-            .upload(newPath, (result) => {
+            .upload(newPath,(result) => {
                 //console.log(result)
                 let mascot = new Mascot({
                     nombre: req.body.nombre,

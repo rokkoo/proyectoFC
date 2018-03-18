@@ -17,6 +17,7 @@ module.exports = function (server) {
     client.on('message', function (channel, msg) {
         if (channel == 'images') {
             // Canal de envio de nuevas imagenes
+            console.log(io.socket);
             io.emit('nuevo post', msg);
         }
         if (channel == 'chat') {
@@ -26,6 +27,6 @@ module.exports = function (server) {
     });
     //Conexion con mensajes N-N
     io.on('connection', function (socket) {
-        console.log('Cliente conectado');
+        io.emit('chat1', 'usuario añadido');
     });
 }

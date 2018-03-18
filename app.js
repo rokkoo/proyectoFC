@@ -16,6 +16,8 @@ var app = express();
 var http = require('http').createServer(app);
 var router = express.Router();
 realtime(http);
+
+// Login MiddleWare 
 function requiresLogin(req, res, next) {
   if (req.session && req.session.userId) {
     return next();

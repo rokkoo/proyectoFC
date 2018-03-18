@@ -9,7 +9,7 @@
       //A la escuchba del canal
       socket.on('todos chat', (msg) => {
         console.log(msg);
-        $('#actu').html(`<div id="reload" class="btn btn-primary fadeIn">${post.length}Nueva actu</div>`);
+        $('#actu').html(`<div id="reload" class="btn btn-primary fadeIn">${post.length} Nueva actualización</div>`);
         $('#reload').click(()=>{
           console.log('clikeado boton');
           for (let i = 0; i < post.length; i++) {
@@ -20,7 +20,7 @@
             <h3 class="panel-title">${post[i].nombre}</h3>
             </div>
             <div class="panel-body">
-            <img src="${post[i].url}" alt="" srcset="">
+            <img src="${post[i].url}" alt="" width="400" height="400" srcset="" style="border-radius: 10px;">
             <p>Información: ${post[i].info}</p>
             <p>Edad: ${post[i].edad}</p>
             <p>Fecha del post: ${post[i].date}</p>
@@ -31,6 +31,9 @@
           };
           post = [];
         });
+      });
+      socket.on('chat1', (data) => {
+        $('#main').prepend(`${data}`);
       });
       socket.on('nuevo post', function (msg) {
         msg = JSON.parse(msg);
