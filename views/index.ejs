@@ -24,7 +24,25 @@
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title"><%- mascota.nombre %></h3>
                                                 </div>
+                                                <div class="btn btn-primary" onclick="getLocation()">Conocer tu ubicación</div>
                                                 <div class="panel-body">
+                                                        <script>
+                                                                var x = document.getElementById("demo");
+                                                                
+                                                                function getLocation() {
+                                                                    if (navigator.geolocation) {
+                                                                        navigator.geolocation.getCurrentPosition(showPosition);
+                                                                    } else { 
+                                                                        x.innerHTML = "Geolocation is not supported by this browser.";
+                                                                    }
+                                                                }
+                                                                
+                                                                function showPosition(position) {
+                                                                    x.innerHTML = "Latitude: " + position.coords.latitude + 
+                                                                    "<br>Longitude: " + position.coords.longitude;
+                                                                }
+                                                                </script>
+
                                                     <img src="<%- mascota.url %>" alt="" width="400" height="400" srcset="" style="border-radius: 10px;">
                                                     <p>Información: <%- mascota.info %></p>
                                                     <p>Edad: <%- mascota.edad %></p>
