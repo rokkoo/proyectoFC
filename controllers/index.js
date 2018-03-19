@@ -24,9 +24,10 @@ async function getLocation(puip) {
 router.get('/', (req, res, next) => {
     //var geo = geoip.lookup(ip.address());
     const puip = ip.address();
+    console.log(puip);
     getLocation(puip)
     .then(respu => console.log('Ciudad: '+respu))
-    
+    //https://maps.googleapis.com/maps/api/geocode/json?latlng=43.2684377,-2.0178149&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE
     const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + puip;
     fetch(url) //Nos devuelve una promesa
     .then(response => {
@@ -37,9 +38,6 @@ router.get('/', (req, res, next) => {
           `Longitude: ${json.results[0].geometry.location.lng}`
         );
       });
-    })
-    .catch(error => {
-      console.log(error);
     });
 
     veces.push(i);
