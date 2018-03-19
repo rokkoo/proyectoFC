@@ -9,6 +9,8 @@
       //A la escuchba del canal
       socket.on('todos chat', (msg) => {
         console.log(msg);
+        // TODO poner el titulo por defecto
+        $('#titulo').text('Adoptapp ('+post.length+')');
         $('#actu').html(`<div id="reload" class="btn btn-primary fadeIn">${post.length} Nueva actualización</div>`);
         $('#reload').click(()=>{
           console.log('clikeado boton');
