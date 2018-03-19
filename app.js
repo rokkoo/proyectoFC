@@ -17,7 +17,7 @@ var app = express();
 var http = require('http').createServer(app);
 var router = express.Router();
 realtime(http);
-// var io = require("socket.io")(http);
+app.enable('trust proxy');
 
 app.use(function(req, res, next) {
   if (req.session && req.session.user) {

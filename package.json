@@ -16,6 +16,7 @@
     "font-awesome": "^4.7.0",
     "geoip-lite": "^1.2.1",
     "ip": "^1.1.5",
+    "ipify": "^2.0.0",
     "mdbootstrap": "^4.5.0",
     "mongodb": "^3.0.4",
     "mongoose": "^5.0.10",
