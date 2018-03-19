@@ -16,11 +16,12 @@ app.get('/:raza', (req, res) => {
         { id: "4", ingles: "appenzeller", castellano: "Boyero de Appenzell", regionOrigen: "Suiza", dimensiones: "Machos: 52 a 58 cm, hembras: 48 a 54 cm", tamaño: "Medio", peso: "20 kg", caracter: "Equilibrado, tranquilo, amable, valiente, inteligente y muy vivaz.", descripcion: "Descienden de un antiguo perro de origen asiático conocido como Dogo del Tíbet. Se cree que los navegantes griegos y fenicios trajeron estos perros al mediterráneo, donde se empezaron a usar como perros de guerra. Los romanos, aparte de emplearlos en la batalla, también los utilizaron como guías de rebaños."  },
         { id: "5", ingles: "basenji", castellano: "Basenji", regionOrigen: "República Democrática del Congo", dimensiones: "Machos: 43 cm, hembras: 40 cm", tamaño: "Medio", peso: "De 8 a 10 Kg", caracter: "Espíritu intranquilo y juguetón", descripcion: "Es una raza primitiva empleada para la caza y el rastreo. Tienen la característica única de no ladrar, y en su lugar emiten un curioso sonido al estilo del Canto tirolés."  },
         
-        { id: "6", ingles: "beagle", castellano: "nombe", regionOrigen: "regionOrigen", dimensiones: "Dimensiones", tamaño: "Tamaño", peso: "Peso", caracter: "Carácter", descripcion: "Descipción"  },
-        { id: "7", ingles: "bluetick", castellano: "nombe", regionOrigen: "regionOrigen", dimensiones: "Dimensiones", tamaño: "Tamaño", peso: "Peso", caracter: "Carácter", descripcion: "Descipción"  },
-        { id: "8", ingles: "borzoi", castellano: "nombe", regionOrigen: "regionOrigen", dimensiones: "Dimensiones", tamaño: "Tamaño", peso: "Peso", caracter: "Carácter", descripcion: "Descipción"  },
-        { id: "9", ingles: "bouvier", castellano: "nombe", regionOrigen: "regionOrigen", dimensiones: "Dimensiones", tamaño: "Tamaño", peso: "Peso", caracter: "Carácter", descripcion: "Descipción"  },
-        { id: "10", ingles: "boxer", castellano: "nombe", regionOrigen: "regionOrigen", dimensiones: "Dimensiones", tamaño: "Tamaño", peso: "Peso", caracter: "Carácter", descripcion: "Descipción"  },
+        { id: "6", ingles: "beagle", castellano: "Beagle", regionOrigen: "Reino Unido", dimensiones: "Machos: 33 a 41 cm, hembras: 48 a 54 c", tamaño: "Pequeño – Medio", peso: "8 – 16 kg", caracter: "Apacible, Alegre, Disfrutan de la compañía", descripcion: "Los orígenes de esta raza no están muy claros, pero perros de la talla y características similares al beagle moderno se remontan hasta la Antigua Grecia."  },
+        { id: "7", ingles: "bluetick", castellano: "Bluetick coonhound", regionOrigen: "Estados Unidos", dimensiones: "Machos: 56-69 cm, hembras: 53-64 cm", tamaño: "Grande", peso: "Hembra: 20–29 kg, Macho: 25–36 kg", caracter: "Inteligente, juguetón y activo, hasta la edad adulta, protector", descripcion: "Son atléticos, fuertes y necesitan actividad diaria como correr o cazar para mantenerse felices."  },
+        { id: "8", ingles: "borzoi", castellano: "Borzoi", regionOrigen: "Rusia", dimensiones: " Machos de 70 a 82 cm, la de las hembras es más pequeña en aproximadamente 5 cm", tamaño: "Grande", peso: " desde 25 hasta 48 kg", caracter: "Carácter", descripcion: "Borzoi es una raza de perro desarrollada en Rusia. El Borzoi desciende del galgo árabe, siendo parecido a un perro ovejero ruso. Anteriormente conocido como galgo ruso, fue originalmente criado para cazar lobos y liebres."  },
+        { id: "9", ingles: "bouvier", castellano: "Boyero de Flandes", regionOrigen: "Bélgica", dimensiones: "60 y 69 cm", tamaño: "Grande", peso: "36 – 45 kg", caracter: "temperamento estable; nunca tímido pero tampoco agresivo. Como perro pastor y de vigilancia, puede ser desconfiado y protector con su familia o rebaño.", descripcion: "Tradicionalmente usado como perro pastor de ganado bovino y como perro guardián. Es un perro de tamaño grande y con el cuerpo cubierto de una abundante capa de pelo largo."  },
+        { id: "10", ingles: "boxer", castellano: "Bóxer", regionOrigen: "Alemania", dimensiones: "Macho: 57-63 cm, Hembra: 53-59", tamaño: "Medio", peso: "Macho: 30kg, Hembra: 25kg", caracter: "Inteligente, juguetón y activo, hasta la edad adulta, protector.", descripcion: "es una raza canina alemana de trabajo y compañía, tipo moloso, que tiende a un tamaño mediano. Su particular conformación hace que sea un perro que no siempre puede ladrar, salvo cuando la ocasión lo amerita o en estado de excitación."  },
+        
         { id: "11", ingles: "brabancon", castellano: "nombe" },
         { id: "12", ingles: "briard", castellano: "nombe" },
         { id: "13", ingles: "bulldog", castellano: "nombe" },
@@ -109,7 +110,6 @@ app.get('/:raza', (req, res) => {
                 descripcion: _.find(razas, {ingles: req.params.raza}).descripcion 
             };
             res.send(perros);
-            return resp;
         });
 
     //Esta función devuelve una foto aleatoria
@@ -119,8 +119,5 @@ app.get('/:raza', (req, res) => {
         var json = await jRandom.json();
         return json;
     }
-
-
 })
-
 app.listen('3008');
