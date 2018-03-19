@@ -18,6 +18,7 @@ router.get('/', (req, res, next) => {
         res.render('addAnimal',{
             //Objeto
             pagina : nombrePagina,
+            usuario: req.session.user
         });    
 });
 

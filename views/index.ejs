@@ -9,12 +9,12 @@
                 <section class="content">
                     <!-- Page Content Start -->
                     <!-- ================== -->
+                    <% if(typeof(user) != 'undefined'){%>
+                        <% var usuario = user %>
+                    <%}%>
                     <% include ./layouts/topNav %>
                         <div class="wraper container-fluid">
-                            <div class="page-title">
-                                <h3 class="title">Adopta</h3>
-                                <span id="actu"></span>
-                            </div>
+
                             <!-- ¡Aqui ponemos el contenido de la pagina! -->
                                      <!-- Row start -->
                                     <div id="main" class="row">
@@ -24,7 +24,6 @@
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title"><%- mascota.nombre %></h3>
                                                 </div>
-                                                <div class="btn btn-primary" onclick="getLocation()">Conocer tu ubicación</div>
                                                 <div class="panel-body">
                                                         <script>
                                                                 var x = document.getElementById("demo");
@@ -46,7 +45,7 @@
                                                     <img src="<%- mascota.url %>" alt="" width="400" height="400" srcset="" style="border-radius: 10px;">
                                                     <p>Información: <%- mascota.info %></p>
                                                     <p>Edad: <%- mascota.edad %></p>
-                                                    <p>Fecha del post: <%- mascota.date %></p>
+                                                    <p class="pull-right">Fecha del post: <%- mascota.date %></p>
 
                                                 </div>
                                             </div>

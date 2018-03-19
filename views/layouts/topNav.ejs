@@ -6,18 +6,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
-                <!-- Search -->
-                <form role="search" class="navbar-left app-search pull-left hidden-xs">
-                  <input type="text" placeholder="Search..." class="form-control">
-                  <a href=""><i class="fa fa-search"></i></a>
-                </form>
+
                 
                 <!-- Left navbar -->
                 <nav class=" navbar-default" role="navigation">
                     <ul class="nav navbar-nav hidden-xs">
+                            <li><a href="#"><button class="btn btn-primary m-b-3" onclick="getLocation()"> <i class="fas fa-map-marker-alt fa-fw"></i> <span> CONOCE TU UBICACIÓN</span> </button></a></li>
+
                         <li class="dropdown">
-                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">English <span class="caret"></span></a>
+                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">IDIOMA <span class="caret"></span></a>
                             <ul role="menu" class="dropdown-menu">
                                 <li><a href="#">German</a></li>
                                 <li><a href="#">French</a></li>
@@ -25,55 +22,17 @@
                                 <li><a href="#">Spanish</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Files</a></li>
                     </ul>
 
                     <!-- Right navbar -->
                     <ul class="nav navbar-nav navbar-right top-menu top-right-menu">  
-                            <li><a href="/registrate"><button class="btn btn-success m-b-5"> <i class="fa fa-register"></i> <span>REGÍSTRATE!</span> </button></a></li>
-                            <li><a href="/login"><button class="btn btn-success m-b-5"> <i class="fa fa-register"></i> <span>ENTRA!</span> </button></a></li>
-                            <!-- mesages -->
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-envelope-o "></i>
-                                <span class="badge badge-sm up bg-purple count">4</span>
-                            </a>
-                            <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5001">
-                                <li>
-                                    <p>Messages</p>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="pull-left"><img src="img/avatar-2.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
-                                        <span class="block"><strong>John smith</strong></span>
-                                        <span class="media-body block">New tasks needs to be done<br><small class="text-muted">10 seconds ago</small></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="pull-left"><img src="img/avatar-3.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
-                                        <span class="block"><strong>John smith</strong></span>
-                                        <span class="media-body block">New tasks needs to be done<br><small class="text-muted">3 minutes ago</small></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="pull-left"><img src="img/avatar-4.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
-                                        <span class="block"><strong>John smith</strong></span>
-                                        <span class="media-body block">New tasks needs to be done<br><small class="text-muted">10 minutes ago</small></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <p><a href="inbox.html" class="text-right">See all Messages</a></p>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <!-- /messages -->
+                        <% if(typeof(usuario) != 'undefined'){%>
+
                         <!-- Notification -->
+                        
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-bell-o"></i>
+                                <i class="fas fa-bell fa-fw"></i>
                                 <span class="badge badge-sm up bg-pink count">3</span>
                             </a>
                             <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5002">
@@ -107,19 +66,21 @@
                         <!-- /Notification -->
 
                         <!-- user login dropdown start-->
-                        <li class="dropdown text-center">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <img alt="" src="img/avatar-2.jpg" class="img-circle profile-img thumb-sm">
-                                <span class="username">
-                                    John Deo </span> <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-                                <li><a href="profile.html"><i class="fa fa-briefcase"></i>Profile</a></li>
-                                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                                <li><a href="#"><i class="fa fa-bell"></i> Friends <span class="label label-info pull-right mail-info">5</span></a></li>
-                                <li><a href="login/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                            </ul>
-                        </li>
+                            <li class="dropdown text-center">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <img alt="" src="img/avatar-2.jpg" class="img-circle profile-img thumb-sm">
+                                    <span class="username" style="font-size:20px"> <%= usuario.nombre %>
+                                        </span> <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
+                                    <li><a href="/perfil"><i class="fas fa-user fa-fw"></i>PERFIL</a></li>
+                                    <li><a href="/logout"><i class="fas fa-sign-out-alt fa-fw"></i> DESCONECTAR</a></li>
+                                </ul>
+                            </li>
+                        <%}else{%>
+                            <li><a href="/registrate"><button class="btn btn-success m-b-5"> <i class="fa fa-register"></i> <span>REGÍSTRATE!</span> </button></a></li>
+                            <li><a href="/login"><button class="btn btn-success m-b-5"> <i class="fa fa-register"></i> <span>ENTRA!</span> </button></a></li>
+                        <%}%>
                         <!-- user login dropdown end -->       
                     </ul>
                     <!-- End right navbar -->

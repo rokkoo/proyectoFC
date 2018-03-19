@@ -50,26 +50,6 @@ userSchema.pre('save', function (next) {
     })
   });
 
-  userSchema.statics.authenticate = function (email, contrasena, callback) {
-    User.findOne({ email: email })
-      .exec(function (err, user) {
-        if (err) {
-          return callback(err)
-        } else if (!user) {
-          var err = new Error('User not found.');
-          err.status = 401;
-          return callback(err);
-        }
-        bcrypt.compare(contrasena, user.contrasena, function (err, result) {
-          if (result === true) {
-            return callback(null, user);
-          } else {
-            return callback();
-          }
-        })
-      });
-  };
-
   let User = mongoose.model('User', userSchema);
   
 module.exports = User;

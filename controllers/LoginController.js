@@ -1,9 +1,12 @@
 
 let express = require('express');
 let router = express.Router();
+var bcrypt = require('bcrypt');
+
 
 const mongoose = require('../config/mongoose/conn');
 var User = require('../models/user');
+
 
 router.get('/', (req, res, next) => {
     var nombrePagina = 'Conéctate!';
@@ -13,24 +16,28 @@ router.get('/', (req, res, next) => {
     });    
 });
 
-router.post('/logueando', (req, res, next) => {
-    if (req.body.logEmail && req.body.logContrasena) {
-        User.authenticate(req.body.logEmail, req.body.logContrasena, function (error, user) {
-          if (error || !user) {
-            var err = new Error('Wrong email or password.');
-            err.status = 401;
-            return next(err);
-          } else {
-            req.session.userId = user._id;
-            res.locals.user = user.nombre;
-            return res.redirect('/registrate');
-          }
-        });
-      } else {
-        var err = new Error('All fields required.');
-        err.status = 400;
-        return next(err);
-      }
+router.post('/', function(req, res) {
+  //                  nombre de campo input
+  User.findOne({ email: req.body.logEmail }, function(err, user) {
+    if (!user) {
+      res.render('users/loginUser', { error: 'NO HAY USUARIO.' });
+    } else {
+      console.log(user);
+      bcrypt.compare(req.body.logContrasena, user.contrasena, function (err, result) {
+        console.log('entrando bcryps')
+        if (result === true) {
+          console.log('entrando true')
+
+           // sets a cookie with the user's info
+          req.session.user = user;
+          res.redirect('/perfil');
+        } else {
+          console.log('entrando false')
+          res.render('users/loginUser', { error: 'MAL LA CONTRASEÑA' });
+        }
+      })
+    }
+  });
 });
 
 router.get('/logout', function(req, res, next) {

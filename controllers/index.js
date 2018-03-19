@@ -52,10 +52,35 @@ router.get('/', (req, res, next) => {
             //console.log({ mascotas : mascotas});
             var nombrePagina = 'ADOPTAPP';
             res.render('index', {
-                //Objeto
+                usuario : req.session.user,
                 pagina: nombrePagina,
                 mascotas: mascotas
             });
         });
 });
+
+router.get('/registrate', (req, res, next) => {
+  var nombrePagina = 'REGISTRAR USUARIO';
+  res.render('users/addUser',{
+    usuario : req.session.user,
+    pagina : nombrePagina,
+  });    
+});
+
+router.post('/nuevo', (req, res, next) => {
+  //Elementos que se capturan en el body
+  console.log(req.body);
+  let user = new User({
+      nombre: req.body.nombre,
+      apellido: req.body.apellido,
+      email: req.body.email,
+      contrasena: req.body.contrasena,
+      confirmarContrasena: req.body.confirmarContrasena,
+  });
+  user.save();
+  req.session.userId = user._id;
+  res.redirect('/usuarios/home');
+  // alfonso.save().then(() => console.log(alfonso.username));
+});
+
 module.exports = router;
