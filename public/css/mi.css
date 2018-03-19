@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i");
+
+.post {
+  max-width: 400px;
+  background: #fff;
+  margin: 20px auto;
+  margin-left: 6px;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+.post h1 {
+  margin: 0 0 5px;
+}
+.post hr {
+  width: 50px;
+  margin: 15px auto;
+  border: 1px solid #eee;
+}
+.post p {
+  margin: 0;
+}
+.post .btn-circle {
+  color: #000;
+  line-height: 20px;
+  width: 35px;
+  height: 35px;
+  margin-top: 15px;
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 100%;
+  padding: 6px;
+  font-size: 25px;
+  transition: all .2s ease;
+}
+.post:hover .btn-circle {
+  color: #fff;
+  background: #000;
+  transform: scale(1.2);
+}
+.post .post-left img {
+  width: 100%;
+  display: block;
+}
+.post .post-right {
+  text-align: center;
+  padding: 60px 40px;
+  border-left: 1px solid #f9f9f9;
+}
+
+@media (min-width: 768px) {
+  .post {
+    max-width: 600px;
+  }
+  .post .post-child {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+  }
+  .post .post-right {
+    padding: 40px;
+  }
+}

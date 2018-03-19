@@ -17,6 +17,7 @@ var app = express();
 var http = require('http').createServer(app);
 var router = express.Router();
 realtime(http);
+// var io = require("socket.io")(http);
 
 app.use(function(req, res, next) {
   if (req.session && req.session.user) {
@@ -77,14 +78,30 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-/*
-//Conexion con el socket
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
 
-});*/
+//Conexion con el socket
+const clients =  new Set();
+const users = [];
+// io.on('connection', function(socket){
+
+//   socket.on('chat message', function(msg){
+//     io.emit('chat message', msg);
+//   });
+//   var hs = socket.handshake;
+//   userCo = hs.headers.cookie.split(';'); //Nos devuelve un array, posicion 0 id del IO y la 1 cookie de sesion
+//   clients.add(userCo);
+//   //console.log('Usuario => '+clients.get(1));
+//   //for (let item of clients) console.log(item+' <--- FIN');
+
+//   io.emit("chat1", "usuario CONECTADO");
+
+//   socket.on('user', (id, msg) => {
+//     // send a private message to the socket with the given id
+//     socket.to(id).emit('my message', msg);
+//   });
+
+
+// });
 
 var port = process.env.PORT || 88;
 

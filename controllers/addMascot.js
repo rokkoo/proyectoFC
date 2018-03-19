@@ -15,11 +15,13 @@ var realtime = require('../config/realtime/realTime');
 
 router.get('/', (req, res, next) => {
         var nombrePagina = 'ADOPTAPP';
+        const user = req.session.user;
+        console.log(user._id);
         res.render('addAnimal',{
             //Objeto
             pagina : nombrePagina,
             usuario: req.session.user
-        });    
+        });  
 });
 
 router.post('/adopcion/nueva', (req, res, next) => {
@@ -27,7 +29,8 @@ router.post('/adopcion/nueva', (req, res, next) => {
     //console.log(req.files.mascotaImg);
     //El modulo 'fs' (File System) que provee Nodejs nos permite manejar los archivos
     var fs = require('fs')
-
+    const user = req.session.user._id;
+    console.log('POST '+user._id);
     var img = req.files.mascotaImg;
     var path = req.files.mascotaImg.path
     var newPath = './public/fotos/' + req.files.mascotaImg.originalFilename;
@@ -48,7 +51,8 @@ router.post('/adopcion/nueva', (req, res, next) => {
                     nombre: req.body.nombre,
                     edad: req.body.edad,
                     info: req.body.info,
-                    url: result.url
+                    url: result.url,
+                    idUser: user
                 });
                 addedPet = mascot;
                 mascot.save()
