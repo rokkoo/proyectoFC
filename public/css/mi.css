@@ -48,7 +48,12 @@
   padding: 60px 40px;
   border-left: 1px solid #f9f9f9;
 }
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+.post .datos > .header{
+  font-size: 20px; 
+  font-family: 'Montserrat', sans-serif;
 
+}
 @media (min-width: 768px) {
   .post {
     max-width: 600px;

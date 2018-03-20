@@ -16,15 +16,15 @@
                                     <div class="wraper container-fluid">
                                         <div class="page-title">
                                             <h3 class="title">Adoptap</h3>
-                                            <span id="actu"></span>
+                                            <div id="actu"></div>
 
-                                            </div>                                       
+                                        </div>
                                         <!-- ¡Aqui ponemos el contenido de la pagina! -->
                                         <!-- Row start -->
                                         <div id="main" class="row">
                                             <% mascotas.forEach(function(mascota){ %>
                                                 <div class="post col-md-6">
-                                                    <div class="post-child post-left">
+                                                    <div class="post-child post-left" style="text-align:left">
                                                         <img src="<%- mascota.url %>" title="This is a placeholder image">
                                                     </div>
                                                     <div class="post-child post-right">
@@ -32,37 +32,43 @@
                                                             <%- mascota.nombre %>
                                                         </h1>
                                                         <hr>
-                                                        <p>Información:
-                                                            <%- mascota.info %>
-                                                        </p>
-                                                        <p>Edad:
+                                                        <!-- <div class="datos">
+                                                            <span class=""> Información</span>
+                                                            <span class="data">
+                                                                <%- mascota.info %>
+                                                            </span>
+                                                        </div> -->
+                                                        <div>Edad:
                                                             <%- mascota.edad %>
-                                                        </p>
-                                                        <p>Fecha del post:
-                                                            <%- mascota.date %>
-                                                        </p>
-                                                        <p>ID persona:
+                                                        </div>
+                                                        <div>Tamaño del perro:
+                                                            Grande
+                                                        </div>
+                                                        <div id="fecha">Fecha del post:
+                                                          <span><%- mascota.date%></span>
+                                                        </div>
+                                                        <!-- <div>ID persona:
                                                             <%- mascota.idUser %>
-                                                        </p>
+                                                        </div> -->
                                                         <a class="btn-circle">&#x21e2;</a>
                                                     </div>
                                                 </div>
-                                            <% }); %>
+                                                <% }); %>
                                         </div>
                                         <!-- End of Row -->
 
-                                        </div>
-                                        <!-- End row -->
-
-                                        </div>
-                                        <!-- Page Content Ends -->
-                                        <!-- ================== -->
                                     </div>
-                                        <!-- Footer Start -->
-                                        <footer class="footer">
-                                            2015 © Velonic.
-                                        </footer>
-                                        <!-- Footer Ends -->
+                                    <!-- End row -->
+
+                                    </div>
+                                    <!-- Page Content Ends -->
+                                    <!-- ================== -->
+                                    </div>
+                                    <!-- Footer Start -->
+                                    <footer class="footer">
+                                        2015 © Velonic.
+                                    </footer>
+                                    <!-- Footer Ends -->
 
 
 
@@ -71,28 +77,29 @@
                 <% include ./layouts/scripts %>
         </body>
         <script>
-                var x = document.getElementById("location");
+            var x = document.getElementById("location");
 
-                function getLocation() {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(showPosition);
-                    } else {
-                        x.innerHTML = "Geolocation is not supported by this browser.";
-                    }
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
                 }
+            }
 
-                function showPosition(position) {
-                    var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
-                    $.post(url, function () {
+            function showPosition(position) {
+                var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
+                $.post(url, function () {
+                })
+                    .done(function () {
+                        $('#location').text('esperando...');
                     })
-                        .done(function () {
-                            $('#location').text('esperando...');
-                        })
-                        .always(function (data) {
-                            var data = data.results[0].address_components[1].long_name;
-                            console.log(data)
-                            $('#location').html(`<p class="text-center"> <i class="fas fa-map-marker-alt fa-fw"></i> <span> ${data}</span></p>`);
-                        });
-                }
-            </script>
+                    .always(function (data) {
+                        var data = data.results[0].address_components[1].long_name;
+                        console.log(data)
+                        $('#location').html(`<p class="text-center"> <i class="fas fa-map-marker-alt fa-fw"></i> <div> ${data}</div></p>`);
+                    });
+            }
+        </script>
+
 </html>

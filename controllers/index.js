@@ -2,7 +2,8 @@ let express = require("express");
 let router = express.Router();
 var Mascot = require("./../models/mascot");
 var realtime = require("../config/realtime/realTime");
-
+var moment = require('moment');
+moment.locale('es');
 var ip = require("ip");
 var geoip = require("geoip-lite");
 const fetch = require("node-fetch");
@@ -27,7 +28,8 @@ router.get("/", (req, res, next) => {
       res.render("index", {
         usuario: req.session.user,
         pagina: nombrePagina,
-        mascotas: mascotas
+        mascotas: mascotas,
+        moment: moment
       });
     });
 });

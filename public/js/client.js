@@ -23,10 +23,8 @@
               <div class="post-child post-right">
                   <h1>${post[i].nombre}</h1>
                   <hr>
-                  <p>Informacio¡ón: ${post[i].info}</p>
                   <p>Edad: ${post[i].edad}</p>
                   <p>Fecha del post: ${post[i].date}</p>
-                  <p>ID persona: ${post[i].idUser}</p>
                   <a class="btn-circle">&#x21e2;</a>
               </div>
             </div>`);

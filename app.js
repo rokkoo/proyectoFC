@@ -72,7 +72,7 @@ app.use('/', index);
 app.use('/login', loginForm);
 app.use('/perfil', requireLogin, userForm);
 app.use('/registrate', registerForm);
-app.use('/nuevaMascota', mascotForm);
+app.use('/nuevaMascota', requireLogin, mascotForm);
 app.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');
