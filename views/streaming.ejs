@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ./layouts/head %>
+    <% include ./layouts/imports %>
+
+    <body>
+        <% include ./layouts/menuLateral %>
+        <!--Main Content Start -->
+        <section class="content">
+            <!-- Page Content Start -->
+            <!-- ================== -->
+            <% include ./layouts/topNav %>
+            <div class="wraper container-fluid">
+                <div class="page-title"> 
+                    <h3 class="title">Adopta</h3> 
+                </div>
+                <!-- ¡Aqui ponemos el contenido de la pagina! -->
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1>Server stream</h1>
+                        <video id="video" autoplay></video><br>
+                        <canvas id="canvas" width="1280" height="720"></canvas>
+                        <div id="div"></div>
+                    </div> <!-- end col -->          
+                </div> <!-- End row -->
+            </div>
+            <!-- Page Content Ends -->
+            <!-- ================== -->
+            <!-- Footer Start -->
+            <footer class="footer">
+                2015 © Velonic.
+            </footer>
+            <!-- Footer Ends -->
+        </section>
+        <!-- Main Content Ends -->
+        <!-- Scripts -->
+        <% include ./layouts/scripts %>
+        <script>
+            (function (d, w, n, io){
+                'use strict'
+                
+                var io = io(),
+                    startCamera = false,
+                    video = d.querySelector('#video'),
+                    canvas = d.querySelector('#canvas'),
+                    context = canvas.getContext('2d'),
+                    div = d.querySelector('#div');         
+                // Para las nuevas versiones de los navegadores
+                n.mediaDevices.getUserMedia({
+                    // Caracteristicas del envio
+                     video: true,
+                     audio: true 
+                }).then((stream) => {
+                    video.srcObject = stream;
+                    startCamera = true; 
+                        video.style.display = 'none';
+                        console.log('documento cargado')
+                }).catch(
+                    e => console.log(e.name + ": "+ e.message)
+                );
+                
+                (function() {
+                    var requestAnimationFrame = window.requestAnimationFrame || 
+                    window.mozRequestAnimationFrame ||
+                    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+                    window.requestAnimationFrame = requestAnimationFrame;
+                  })();
+                  
+
+                function streamVideo (context, canvas, video){
+
+                    var outputStream = canvas.toDataURL('image/jpeg', .2); //Calidad de la imagen
+                    context.drawImage(video, 0, 0); 
+
+                    if(startCamera == true){
+                        //Emitimos a el resto de clientes
+                        io.emit('streaming',outputStream);
+                        requestAnimationFrame(function (){
+                            streamVideo(context, canvas, video);
+                        })
+                    }
+                }
+                setInterval(function() {
+                 streamVideo(context, canvas, video); 
+                }, 1000);
+            })(document,window, navigator, io); //Funcion que se ejecuta en cuanto se lee
+        </script>
+    </body>
+</html>
