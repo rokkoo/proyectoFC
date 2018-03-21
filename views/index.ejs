@@ -11,63 +11,6 @@
                     <!-- ================== -->
                     <% if(typeof(user) != 'undefined'){%>
                         <% var usuario = user %>
-<<<<<<< HEAD
-                    <%}%>
-                    <% include ./layouts/topNav %>
-                        <div class="wraper container-fluid">
-                            <div class="page-title">
-                                <h3 class="title">Adoptap</h3>
-                                <span id="actu"></span>
-                            </div>
-                            <!-- ¡Aqui ponemos el contenido de la pagina! -->
-                            <!-- Row start -->
-                            <div id="main" class="row">
-                                <% mascotas.forEach(function(mascota){ %>
-                                    <div class="col-md-12">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                    <span id="demo"></span>
-                                                <h3 class="panel-title">
-                                                    <%- mascota.nombre %>
-                                                </h3>
-                                            </div>
-                                            <div class="btn btn-primary" onclick="getLocation()">Conocer tu ubicación</div>
-                                            <div class="panel-body">
-                                                <script>
-                                                    var x = document.getElementById("demo");
-
-                                                    function getLocation() {
-                                                        if (navigator.geolocation) {
-                                                            navigator.geolocation.getCurrentPosition(showPosition);
-                                                        } else {
-                                                            x.innerHTML = "Geolocation is not supported by this browser.";
-                                                        }
-                                                    }
-
-                                                    function showPosition(position) {
-                                                        var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
-                                                        $.post(url, function (data) {
-                                                            var data = data.results[0].address_components[1].long_name;
-                                                            console.log(data)
-                                                            x.innerHTML = 'Tu ubicacion es '+data;
-                                                        });
-                                                        
-                                                    }
-                                                </script>
-
-                                                <img src="<%- mascota.url %>" alt="" width="400" height="400" srcset="" style="border-radius: 10px;">
-                                                <p>Información:
-                                                    <%- mascota.info %>
-                                                </p>
-                                                <p>Edad:
-                                                    <%- mascota.edad %>
-                                                </p>
-                                                <p>Fecha del post:
-                                                    <%- mascota.date %>
-                                                </p>
-
-                                            </div>
-=======
                             <%}%>
                                 <% include ./layouts/topNav %>
                                     <div class="wraper container-fluid">
@@ -111,7 +54,6 @@
                                                     </div>
                                                 </div>
                                                 <% }); %>
->>>>>>> 89697c414f16ce5ac75a2e1e805e3d53e50c6af5
                                         </div>
                                         <!-- End of Row -->
 
