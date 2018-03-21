@@ -5,18 +5,21 @@ var multipart = require('connect-multiparty');
 
 //Importamos nuestros controllers
 var index = require('./controllers/index');
-var mascotForm = require('./controllers/addMascot')
-var userForm = require('./controllers/UserController')
-var loginForm = require('./controllers/LoginController')
-var registerForm = require('./controllers/RegisterController')
-var session = require('client-sessions')
-var realtime = require('./config/realtime/realTime')
+var mascotForm = require('./controllers/addMascot');
+var userForm = require('./controllers/UserController');
+var loginForm = require('./controllers/LoginController');
+var registerForm = require('./controllers/RegisterController');
+var session = require('client-sessions');
+var realtime = require('./config/realtime/realTime');
+var streaming = require('./controllers/streaming');
+
 var view = '/views';
 
 var app = express();
 var http = require('http').createServer(app);
 var router = express.Router();
 realtime(http);
+var io = require("socket.io")(http);
 app.enable('trust proxy');
 
 app.use(function(req, res, next) {
@@ -72,20 +75,22 @@ app.use('/', index);
 app.use('/login', loginForm);
 app.use('/perfil', requireLogin, userForm);
 app.use('/registrate', registerForm);
-app.use('/nuevaMascota', mascotForm);
+app.use('/streaming', streaming);
+app.use('/nuevaMascota', requireLogin, mascotForm);
 app.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');
 });
 
-/*
 //Conexion con el socket
+const clients =  new Set();
+const users = [];
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+  socket.on('streaming', function(video){
+    console.log('envio')
+    io.emit('stream', video);
   });
-
-});*/
+});
 
 var port = process.env.PORT || 88;
 

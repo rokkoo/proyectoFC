@@ -8,7 +8,8 @@ let mascotSchema = new Schema({
     edad: { type: Number, min: 0 },
     info: {type: String},
     url: {type: String},
-    date: { type: Date, default: Date.now },
+    date: { type: String},
+    idUser: {type: String},
     comments: [{ body: String, date: Date }],
 }, { versionKey: false });
 
