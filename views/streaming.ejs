@@ -56,6 +56,9 @@
                     startCamera = true; 
                         video.style.display = 'none';
                         console.log('documento cargado')
+                        setInterval(function() {
+                            streamVideo(context, canvas, video); 
+                           }, 70);
                 }).catch(
                     e => console.log(e.name + ": "+ e.message)
                 );
@@ -63,14 +66,14 @@
                 (function() {
                     var requestAnimationFrame = window.requestAnimationFrame || 
                     window.mozRequestAnimationFrame ||
-                    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-                    window.requestAnimationFrame = requestAnimationFrame;
+                    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
+                    window.requestAnimationFrame = requestAnimationFrame ;
                   })();
                   
 
                 function streamVideo (context, canvas, video){
 
-                    var outputStream = canvas.toDataURL('image/jpeg', .2); //Calidad de la imagen
+                    var outputStream = canvas.toDataURL('image/jpeg', .9); //Calidad de la imagen
                     context.drawImage(video, 0, 0); 
 
                     if(startCamera == true){
@@ -81,9 +84,7 @@
                         })
                     }
                 }
-                setInterval(function() {
-                 streamVideo(context, canvas, video); 
-                }, 1000);
+
             })(document,window, navigator, io); //Funcion que se ejecuta en cuanto se lee
         </script>
     </body>

@@ -12,6 +12,7 @@ module.exports = function(server) {
   var chat = redis.createClient();
 
   client.subscribe("images");
+  client.subscribe("nuevoTwitt");
   client.subscribe("chat");
 
   client.on("message", function(channel, msg) {
@@ -22,6 +23,9 @@ module.exports = function(server) {
     if (channel == "chat") {
       // Mensaje para el chat N*N
       io.emit("todos chat", msg);
+    }
+    if (channel == 'nuevoTwitt') {
+      io.emit("nuevoTwitt", msg);
     }
   });
   //Conexion con mensajes N-N

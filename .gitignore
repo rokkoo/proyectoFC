@@ -36,6 +36,8 @@ build/Release
 node_modules/
 jspm_packages/
 
+#img
+public/fotos/.jpg
 # Typescript v1 declaration files
 typings/
 
@@ -59,3 +61,5 @@ typings/
 
 # next.js build output
 .next
+public/fotos/2d35eeda5f150daa9f76b97e0f424902.jpg
+public/fotos/2d35eeda5f150daa9f76b97e0f424902.jpg

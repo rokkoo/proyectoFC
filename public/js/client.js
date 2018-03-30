@@ -1,5 +1,6 @@
     var socket = io();
     var post = [];
+    let twittBox = [];
           //Enviar mensaje a el canal 
     // $('form').submit(function () {
     //     socket.emit('chat message', $('#m').val());
@@ -40,6 +41,19 @@
         $('#mains').prepend(`${data}`);
       });
       
-
+      socket.on('nuevoTwitt', (data) => {
+        let twitt = JSON.parse(data);
+        let url = `https://twitter.com/${twitt.user}/status/${twitt.id}`;
+        twittBox.push(url)
+        console.log('recibido '+twittBox);
+        $('#badg').text(twittBox.length);
+          $('#notificaciones').append(`
+          <li>
+            <a href="${url}" target="_blank">
+                <span class="pull-left"><i class="fa fa-user-plus fa-2x text-info"></i></span>
+                <span>${twitt.user}<br><small class="text-muted">5 minutes ago</small></span>
+            </a>
+          </li>`);
+      });
 
 

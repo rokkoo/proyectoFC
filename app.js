@@ -2,6 +2,9 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var multipart = require('connect-multiparty');
+const Twitter = require('twitter');
+const redis = require('redis');
+
 
 //Importamos nuestros controllers
 var index = require('./controllers/index');
@@ -13,13 +16,14 @@ var session = require('client-sessions');
 var realtime = require('./config/realtime/realTime');
 var streaming = require('./controllers/streaming');
 
+
 var view = '/views';
 
-var app = express();
-var http = require('http').createServer(app);
+const app = new express();
+const http = require('http').Server(app);
 var router = express.Router();
 realtime(http);
-var io = require("socket.io")(http);
+//var io = require("socket.io")(http);
 app.enable('trust proxy');
 
 app.use(function(req, res, next) {
@@ -47,6 +51,7 @@ function requireLogin (req, res, next) {
     next();
   }
 };
+
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
 app.use(bodyParser.urlencoded({extended:true}));
@@ -83,13 +88,47 @@ app.get('/logout', function(req, res) {
 });
 
 //Conexion con el socket
-const clients =  new Set();
-const users = [];
-io.on('connection', function(socket){
-  socket.on('streaming', function(video){
-    console.log('envio')
-    io.emit('stream', video);
+// let clients =  new Set();
+// let users = [];
+// io.on('connection', function(socket){
+//   socket.on('streaming', function(video){
+//     console.log('envio')
+//     io.emit('stream', video);
+//   });
+// });
+
+const rClient = redis.createClient();
+
+//Twitter client
+const client = new Twitter({
+  consumer_key: 'aYataD59dggFZgiKKkYpN07Oz',
+  consumer_secret: 'aCV2OsIROshZyL7RB9WxBarn4LaMLMeydcv97XoVsyDg0ElKr7',
+  access_token_key: '979817070547390464-rO0Wr3iN4JzllPzt5iyiQFzMAKfg5dU',
+  access_token_secret: 'qSxnE8Rm2nKqArnuocJqDQxOsquPQPgk7IXUgXjh2qnXE'
+});
+
+//Escucha del stream - track:palabras claves
+const stream = client.stream('statuses/filter', {track:'#adopcion'});
+stream.on('data', (event) => {
+  client.post('favorites/create', {id:event.id_str}, (error, response) => {
+     if(error){
+      console.log(error)
+     }else{
+       nuevoTwitt = {
+         id: response.id_str,
+         text: response.text,
+         user: response.user.screen_name
+       }
+      // console.log(`Twit ID ${response.id_str} Liked! - ${response.text}`);
+      let url = `https://twitter.com/${response.user.screen_name}/status/${response.id_str}`;
+      // console.log(`url https://twitter.com/${response.user.screen_name}/status/${response.id_str}`)
+      rClient.publish('nuevoTwitt',JSON.stringify(nuevoTwitt));
+     }
   });
+});
+
+stream.on('error', (error) => {
+  console.log(`Ha ocurrido un error ${error}`)
 });
 
 var port = process.env.PORT || 88;
