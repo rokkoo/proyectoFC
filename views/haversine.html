@@ -1,0 +1,64 @@
+<html>
+    <script>
+
+        Number.prototype.toRad = function() {
+        return this * Math.PI / 180;
+        }
+        var dublin = {"nombre":"Dublin","lat":53.3330600,"lon":-6.2488900};
+        var berlin = {"nombre":"Berlin","lat":52.5243700,"lon":13.4105300};
+        var donosti={"nombre":"Donosti","lat":43.2918100,"lon":-1.9885100};
+        var destino = [dublin, berlin, donosti];
+        
+
+        var origen = {"lat":51.903614,"lon":-8.468399};
+        var origenLat=origen.lat;
+        var origenLon=origen.lon;
+        
+        var distancias=[];
+
+        for(i=0;i<destino.length;i++){
+            
+            var destinoLat=destino[i].lat;
+            
+            var destinoLon=destino[i].lon;
+            
+            var R = 6371; // km 
+            
+            var distanciaLat = destinoLat-origenLat;
+            var distanciaLat = distanciaLat.toRad();  
+            var distanciaLon = destinoLon-origenLon;
+            var distanciaLon = distanciaLon.toRad();  
+            var a = Math.sin(distanciaLat/2) * Math.sin(distanciaLat/2) + 
+                            Math.cos(origenLat.toRad()) * Math.cos(destinoLat.toRad()) * 
+                            Math.sin(distanciaLon/2) * Math.sin(distanciaLon/2);  
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            var distanciaKm = R * c;
+                    
+            var ciudad = {"nombre":destino[i].nombre, "distancia":distanciaKm};
+            
+            distancias[i]=ciudad;
+        }
+        var ordenado = false;
+        var movimiento;
+        var value;
+        do{
+            movimiento = false;
+            
+            for(i=0;i<distancias.length-1;i++){
+                value=distancias[i];
+                if(distancias[i].distancia>distancias[i+1].distancia){
+                    distancias[i]=distancias[i+1];
+                    distancias[i+1]=value;
+                    movimiento=true;
+                }
+            }
+            if(!movimiento){
+                ordenado=true;
+            }
+        }while(!ordenado);
+        document.write("<p>Ciudades mas cercanas a cork</p>");
+        for(i=0;i<distancias.length;i++){
+            document.write("<p>Nombre "+distancias[i].nombre+" Distancia "+distancias[i].distancia+"</p>");
+        }
+    </script>
+</html>
