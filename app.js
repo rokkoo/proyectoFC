@@ -99,7 +99,8 @@ app.get('/logout', function(req, res) {
 
 const rClient = redis.createClient();
 
-//Twitter client
+//Twitter client - appadoptes@gmail.com
+
 const client = new Twitter({
   consumer_key: 'aYataD59dggFZgiKKkYpN07Oz',
   consumer_secret: 'aCV2OsIROshZyL7RB9WxBarn4LaMLMeydcv97XoVsyDg0ElKr7',
@@ -108,9 +109,36 @@ const client = new Twitter({
 });
 
 //Escucha del stream - track:palabras claves
-const stream = client.stream('statuses/filter', {track:'#adopcion'});
-stream.on('data', (event) => {
-  client.post('favorites/create', {id:event.id_str}, (error, response) => {
+const stream = client.stream('statuses/filter', {track:'#adopcionApp'});
+stream.on('data', (tweet) => {
+
+  /* Hacamos retwitt */
+  client.post('statuses/retweet', {id:tweet.id_str}, (err, response) => {
+      if (response) {
+          console.log('Retweeteado');
+      }
+      // if there was an error while tweeting
+      if (err) {
+          console.log('Error al retwittear');
+      }
+  });
+
+  /* Damos una respuesta al twitt */
+  //Contruimos nuestro objeto de respuesta
+  let statusObj = {status: `Hola @${tweet.user.screen_name}, puedes buscar un dueño para la mascota en nuestra web :)`};
+
+   //llamamos a la funcion post para crear una respuesta
+   client.post('statuses/update', statusObj, (error, tweetReply, response) => {
+         //Si llega algun error los printeamos
+         if(error){
+           console.log(error);
+         }
+         //Motsramos en consola nuestra respuesta
+         console.log(tweetReply.text);
+  });
+
+  /* Marcamos como favorito el twitt */
+  client.post('favorites/create', {id:tweet.id_str}, (error, response) => {
      if(error){
       console.log(error)
      }else{
@@ -121,10 +149,10 @@ stream.on('data', (event) => {
        }
       // console.log(`Twit ID ${response.id_str} Liked! - ${response.text}`);
       let url = `https://twitter.com/${response.user.screen_name}/status/${response.id_str}`;
-      // console.log(`url https://twitter.com/${response.user.screen_name}/status/${response.id_str}`)
       rClient.publish('nuevoTwitt',JSON.stringify(nuevoTwitt));
      }
   });
+  
 });
 
 stream.on('error', (error) => {
