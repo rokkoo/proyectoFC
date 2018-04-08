@@ -5,6 +5,11 @@ var multipart = require('connect-multiparty');
 const Twitter = require('twitter');
 const redis = require('redis');
 
+//variables de entorno
+require('dotenv').config();
+
+//emails
+const nodemailer = require('nodemailer');
 
 //Importamos nuestros controllers
 var index = require('./controllers/index');
@@ -131,10 +136,12 @@ stream.on('data', (tweet) => {
    client.post('statuses/update', statusObj, (error, tweetReply, response) => {
          //Si llega algun error los printeamos
          if(error){
-           console.log(error);
+          console.log(error);
+         }else{
+          //Motsramos en consola nuestra respuesta
+          console.log(tweetReply.text);
          }
-         //Motsramos en consola nuestra respuesta
-         console.log(tweetReply.text);
+
   });
 
   /* Marcamos como favorito el twitt */
@@ -158,6 +165,11 @@ stream.on('data', (tweet) => {
 stream.on('error', (error) => {
   console.log(`Ha ocurrido un error ${error}`)
 });
+
+
+
+
+
 
 var port = process.env.PORT || 88;
 

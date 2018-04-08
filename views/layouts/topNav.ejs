@@ -50,6 +50,10 @@
                             <li class="dropdown text-center">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <img alt="" src="img/avatar-2.jpg" class="img-circle profile-img thumb-sm">
+                                        <script>
+                                            let userName = '<%= usuario.nombre %>';     
+                                            let userEmail = '<%= usuario.email %>';     
+                                        </script>
                                     <span class="username" style="font-size:20px"> <%= usuario.nombre %>
                                         </span> <span class="caret"></span>
                                 </a>
