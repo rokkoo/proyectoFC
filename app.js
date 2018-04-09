@@ -7,6 +7,8 @@ const redis = require('redis');
 
 //variables de entorno
 require('dotenv').config();
+console.log(process.env.PORT);
+
 
 //emails
 const nodemailer = require('nodemailer');
