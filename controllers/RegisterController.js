@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
-
+const email = require('./../config/email/email');
+const emailData = email.Options();
 const mongoose = require("./../config/mongoose/conn");
 var User = require("./../models/user");
 
