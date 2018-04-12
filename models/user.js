@@ -26,11 +26,6 @@ let userSchema = new Schema({
         type: String,
         required: true,
       },
-
-    confirmarContrasena: {
-        type: String,
-        required: true,
-      },
     
     telefono: {type: String},
     tipo: [{ rol: String},{ verificado: Boolean},{ curriculum: String} ],

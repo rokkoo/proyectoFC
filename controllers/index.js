@@ -13,6 +13,7 @@ var veces = [];
 var i = { name: "alf", edad: "23" };
 var client = redis.createClient();
 const options = { sort: { nombre: 1 } };
+var User = require('./../models/user');
 /** Pagina de inicio */
 
 router.get("/", (req, res, next) => {
@@ -50,11 +51,10 @@ router.post("/nuevo", (req, res, next) => {
     apellido: req.body.apellido,
     email: req.body.email,
     contrasena: req.body.contrasena,
-    confirmarContrasena: req.body.confirmarContrasena
   });
   user.save();
   req.session.userId = user._id;
-  res.redirect("/usuarios/home");
+  res.redirect("/perfil");
   // alfonso.save().then(() => console.log(alfonso.username));
 });
 
