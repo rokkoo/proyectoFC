@@ -25,6 +25,14 @@ router.post("/", (req, res, next) => {
   });
   user.save();
   req.session.userId = user._id;
+  
+  if (email.Options(user.email, user)) {
+    res.statusCode = 200;
+    //res.send('Email sent!');
+  }else{
+    return res.send('fallo al enviar el email');
+  }
+
   res.redirect("/home");
   // alfonso.save().then(() => console.log(alfonso.username));
 });
