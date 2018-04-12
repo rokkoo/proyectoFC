@@ -7,7 +7,8 @@ moment.locale('es');
 var ip = require("ip");
 var geoip = require("geoip-lite");
 const fetch = require("node-fetch");
-
+const email = require('./../config/email/email');
+const emailData = email.Options();
 var redis = require("redis");
 var veces = [];
 var i = { name: "alf", edad: "23" };
@@ -53,6 +54,12 @@ router.post("/nuevo", (req, res, next) => {
     contrasena: req.body.contrasena,
   });
   user.save();
+  if (email.Options(user.email, user)) {
+    res.statusCode = 200;
+    //res.send('Email sent!');
+  }else{
+    return res.send('fallo al enviar el email');
+  }
   req.session.userId = user._id;
   res.redirect("/perfil");
   // alfonso.save().then(() => console.log(alfonso.username));
