@@ -25,6 +25,7 @@ var streaming = require('./controllers/streaming');
 var view = '/views';
 
 const app = new express();
+
 const http = require('http').Server(app);
 var router = express.Router();
 realtime(http);
@@ -59,8 +60,8 @@ function requireLogin (req, res, next) {
 
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // to support JSON bodies
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.use(multipart()); //Express 4
 
 
