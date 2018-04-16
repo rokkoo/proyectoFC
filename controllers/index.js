@@ -7,12 +7,14 @@ moment.locale('es');
 var ip = require("ip");
 var geoip = require("geoip-lite");
 const fetch = require("node-fetch");
-
+const email = require('./../config/email/email');
+const emailData = email.Options();
 var redis = require("redis");
 var veces = [];
 var i = { name: "alf", edad: "23" };
 var client = redis.createClient();
 const options = { sort: { nombre: 1 } };
+var User = require('./../models/user');
 /** Pagina de inicio */
 
 router.get("/", (req, res, next) => {
@@ -44,17 +46,21 @@ router.get("/registrate", (req, res, next) => {
 
 router.post("/nuevo", (req, res, next) => {
   //Elementos que se capturan en el body
-  console.log(req.body);
   let user = new User({
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     email: req.body.email,
     contrasena: req.body.contrasena,
-    confirmarContrasena: req.body.confirmarContrasena
   });
   user.save();
+  if (email.Options(user.email, user)) {
+    res.statusCode = 200;
+    //res.send('Email sent!');
+  }else{
+    return res.send('fallo al enviar el email');
+  }
   req.session.userId = user._id;
-  res.redirect("/usuarios/home");
+  res.redirect("/perfil");
   // alfonso.save().then(() => console.log(alfonso.username));
 });
 

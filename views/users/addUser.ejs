@@ -21,8 +21,8 @@
                         <div class="col-sm-8 col-sm-offset-2">
                             <!-- Wizard container -->
                             <div class="wizard-container">
-                                <div class="card wizard-card" data-color="red" id="wizard">
-                                    <form action="" method="">
+                                <div class="card wizard-card" data-color="green" id="wizard">
+                                    <form action="nuevo" method="post">
                                 <!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
         
                                         <div class="wizard-header">
@@ -35,7 +35,6 @@
                                             <ul>
                                                 <li><a href="#acceso" data-toggle="tab">Razón</a></li>
                                                 <li><a href="#datos" data-toggle="tab">Datos Personales</a></li>
-                                                <li><a href="#datosMascota" data-toggle="tab">Datos Animal</a></li>
                                                 <li><a href="#notificaciones" data-toggle="tab">Notificaciones</a></li>
                                             </ul>
                                         </div>
@@ -47,29 +46,29 @@
                                                             <div class="col-sm-10 col-sm-offset-1">
                                                                 <div class="col-sm-4">
                                                                     <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Elija esta opción si desea dar notificación de que su perro se ha perdido.">
-                                                                        <input type="radio" name="accion" value="Design">
+                                                                        <input type="radio" name="accion" value="perdido">
                                                                         <div class="icon">
-                                                                            <i class="material-icons">pets</i>
+                                                                            <i class="material-icons"><i class="fas fa-paw"></i></i>
                                                                         </div>
-                                                                        <h6>PERDIDO</h6>
+                                                                        <h4>PERDIDO</h4>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-4">
                                                                     <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Seleccione esta opción para adoptar un nuevo amigo.">
-                                                                        <input type="radio" name="accion" value="Code">
+                                                                        <input type="radio" name="accion" value="adopcion">
                                                                         <div class="icon">
-                                                                            <i class="material-icons">pets</i>
+                                                                            <i class="material-icons"><i class="fas fa-paw"></i></i>
                                                                         </div>
-                                                                        <h6>ADOPCIÓN</h6>
+                                                                        <h4>ADOPCIÓN</h4>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-4">
                                                                     <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="NO lo dejes en la calle, perocúpate como él lo haría y intenta encontrar una familia para él.">
-                                                                        <input type="radio" name="accion" value="Code">
+                                                                        <input type="radio" name="accion" value="daradopcion">
                                                                         <div class="icon">
-                                                                            <i class="material-icons">pets</i>
+                                                                            <i class="material-icons"><i class="fas fa-paw"></i></i>
                                                                         </div>
-                                                                        <h6>DAR EN ADOPCIÓN</h6>
+                                                                        <h4>DAR EN ADOPCIÓN</h4>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -83,121 +82,94 @@
                                                     <div class="col-sm-5">
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
-                                                                <i class="material-icons">email</i>
+                                                                <i class="material-icons"><i class="fas fa-user"></i></i>
                                                             </span>
                                                             <div class="form-group label-floating">
-                                                                  <label class="control-label">Correo Electrónico:</label>
-                                                                  <input name="email" type="text" class="form-control">
-                                                                </div>
+                                                                  <label class="control-label">Nombre ...   </label>
+                                                                  <input name="nombre" type="text" class="form-control">
                                                             </div>
+                                                            
+                                                        </div>
 
-                                                                <div class="input-group">
+                                                        <div class="input-group">
                                                             <span class="input-group-addon">
-                                                                <i class="material-icons">lock_outline</i>
+                                                                <i class="material-icons"><i class="fas fa-at"></i></i>
+                                                            </span>
+                                                            <div class="form-group label-floating">
+                                                                  <label class="control-label">Correo Electrónico ...</label>
+                                                                  <input id="email" name="email" type="text" class="form-control">
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons"><i class="fas fa-key"></i></i>
                                                             </span>
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">Contraseña:</label>
-                                                                <input name="contrasena" type="password" class="form-control">
+                                                                <input id="contrasena" name="contrasena" type="password" class="form-control"> 
                                                             </div>
                                                         </div>
         
                                                 </div>
                                                     <div class="col-sm-6">
-                                                            <div class="input-group">
-                                                                    <span class="input-group-addon">
-                                                                        <i class="material-icons">lock_outline</i>
-                                                                    </span>
-                                                                    <div class="form-group label-floating">
-                                                                        <label class="control-label">Nombre</label>
-                                                                        <input name="name" type="password" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="input-group">
-                                                                        <span class="input-group-addon">
-                                                                            <i class="material-icons">lock_outline</i>
-                                                                        </span>
-                                                                        <div class="form-group label-floating">
-                                                                            <label class="control-label">Apellido:</label>
-                                                                            <input name="apellido" type="password" class="form-control">
-                                                                        </div>
-                                                                    </div>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                            </span>
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label">... y apellidos</label>
+                                                                <input name="apellido" type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                            </span>
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label"> ... y confirmación del correo.</label>
+                                                                <input id="emailConfirm" name="emailConfirm" type="text" class="form-control" onblur="confirmEmail()">
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                            </span>
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label"> ... y confirmación de contraseña.</label>
+                                                                <input id="passConfirm"  name="passConfirm"  type="password" class="form-control" onblur="confirmPass()">
+                                                            </div>
+                                                            
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane" id="datosMascota">
-                                                    <div class="row">
-                                                            <div class="col-sm-12">
-                                                                <h4 class="info-text"> Rellene el formulario con los datos de su mascota.</h4>
-                                                            </div>
-                                                            <div class="col-sm-5">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon">
-                                                                        <i class="material-icons">email</i>
-                                                                    </span>
-                                                                    <div class="form-group label-floating">
-                                                                          <label class="control-label">Correo Electrónico:</label>
-                                                                          <input name="email" type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-        
-                                                                        <div class="input-group">
-                                                                    <span class="input-group-addon">
-                                                                        <i class="material-icons">lock_outline</i>
-                                                                    </span>
-                                                                    <div class="form-group label-floating">
-                                                                        <label class="control-label">Contraseña:</label>
-                                                                        <input name="contrasena" type="password" class="form-control">
-                                                                    </div>
-                                                                </div>
-                
-                                                        </div>
-                                                            <div class="col-sm-6">
-                                                                    <div class="input-group">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="material-icons">lock_outline</i>
-                                                                            </span>
-                                                                            <div class="form-group label-floating">
-                                                                                <label class="control-label">Nombre</label>
-                                                                                <input name="name" type="password" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="input-group">
-                                                                                <span class="input-group-addon">
-                                                                                    <i class="material-icons">lock_outline</i>
-                                                                                </span>
-                                                                                <div class="form-group label-floating">
-                                                                                    <label class="control-label">Apellido:</label>
-                                                                                    <input name="apellido" type="password" class="form-control">
-                                                                                </div>
-                                                                            </div>
-                                                            </div>
-                                                        </div>  
                                             </div>
                                             <div class="tab-pane" id="notificaciones">
                                                 <div class="row">
-                                                    <h4 class="info-text"> Drop us a small description.</h4>
-                                                    <div class="col-sm-6 col-sm-offset-1">
+                                                    <h4 class="info-text"> Elija si desea recibir notificaciones sobre:</h4>
+                                                    <div class="col-sm-10 col-sm-offset-1">
                                                         <div class="form-group">
-                                                            <label>Room description</label>
-                                                            <textarea class="form-control" placeholder="" rows="6"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Example</label>
-                                                            <p class="description">"The room really nice name is recognized as being a really awesome room. We use it every sunday when we go fishing and we catch a lot. It has some kind of magic shield around it."</p>
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> Recibir noticias sobre:<br>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                        <div class="col-sm-10 col-sm-offset-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label"><b>Recuerde</b><br>Haciendo click en "Finalizar" cede sus derechos administrativos a Adoptap S.L. Si usted desea, puede acudir a leer los Derechos sobre las personas publicas y el apartado de Términos y condiciones, en caso de tener cualquier duda, no dude en contactarnos a través de los medios concretados en esta página.</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                         <div class="wizard-footer">
                                             <div class="pull-right">
-                                                <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
-                                                <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
+                                                <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Siguiente' />
+                                                <input type='submit' class='btn btn-finish btn-fill btn-danger btn-wd' name='ey' value='Finalizar' />
                                             </div>
                                             <div class="pull-left">
-                                                <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                                                <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Paso anterior' />
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>

@@ -5,9 +5,17 @@ var multipart = require('connect-multiparty');
 const Twitter = require('twitter');
 const redis = require('redis');
 
+//variables de entorno
+require('dotenv').config();
+console.log(process.env.PORT);
+
+
+//emails
+const nodemailer = require('nodemailer');
 
 //Importamos nuestros controllers
 var index = require('./controllers/index');
+var baseDatos = require('./controllers/baseDatos');
 var mascotForm = require('./controllers/addMascot');
 var userForm = require('./controllers/UserController');
 var loginForm = require('./controllers/LoginController');
@@ -20,6 +28,7 @@ var streaming = require('./controllers/streaming');
 var view = '/views';
 
 const app = new express();
+
 const http = require('http').Server(app);
 var router = express.Router();
 realtime(http);
@@ -54,8 +63,8 @@ function requireLogin (req, res, next) {
 
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // to support JSON bodies
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.use(multipart()); //Express 4
 
 
@@ -77,6 +86,7 @@ app.use(session({
 
 
 app.use('/', index);
+app.use('/baseDatos',baseDatos);
 app.use('/login', loginForm);
 app.use('/perfil', requireLogin, userForm);
 app.use('/registrate', registerForm);
@@ -131,10 +141,12 @@ stream.on('data', (tweet) => {
    client.post('statuses/update', statusObj, (error, tweetReply, response) => {
          //Si llega algun error los printeamos
          if(error){
-           console.log(error);
+          console.log(error);
+         }else{
+          //Motsramos en consola nuestra respuesta
+          console.log(tweetReply.text);
          }
-         //Motsramos en consola nuestra respuesta
-         console.log(tweetReply.text);
+
   });
 
   /* Marcamos como favorito el twitt */
@@ -158,6 +170,11 @@ stream.on('data', (tweet) => {
 stream.on('error', (error) => {
   console.log(`Ha ocurrido un error ${error}`)
 });
+
+
+
+
+
 
 var port = process.env.PORT || 88;
 

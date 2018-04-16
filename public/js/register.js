@@ -343,18 +343,32 @@
         // Code for the Validator
         var $validator = $('.wizard-card form').validate({
               rules: {
-                firstname: {
+                nombre: {
                   required: true,
                   minlength: 3
                 },
-                lastname: {
+                apellido: {
                   required: true,
                   minlength: 3
                 },
                 email: {
                   required: true,
                   minlength: 3,
-                }
+                },
+                emailConfirm: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#email"
+                },
+                contrasena: {
+                    required: true,
+                    minlength: 3,
+                },
+                passConfirm: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#contrasena"
+                },
             },
     
             errorPlacement: function(error, element) {
@@ -370,10 +384,13 @@
     
             onNext: function(tab, navigation, index) {
                 var $valid = $('.wizard-card form').valid();
+                
                 if(!$valid) {
                     $validator.focusInvalid();
                     return false;
                 }
+
+
             },
     
             onInit : function(tab, navigation, index){
@@ -399,12 +416,7 @@
     
             onTabClick : function(tab, navigation, index){
                 var $valid = $('.wizard-card form').valid();
-    
-                if(!$valid){
-                    return false;
-                } else{
-                    return true;
-                }
+
             },
     
             onTabShow: function(tab, navigation, index) {

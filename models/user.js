@@ -5,13 +5,11 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
     nombre: {
         type: String,
-        unique: true,
         required: true,
         trim: true
       },
     apellido: {
         type: String,
-        unique: true,
         required: true,
         trim: true
       },
@@ -23,11 +21,6 @@ let userSchema = new Schema({
       },
 
     contrasena: {
-        type: String,
-        required: true,
-      },
-
-    confirmarContrasena: {
         type: String,
         required: true,
       },
