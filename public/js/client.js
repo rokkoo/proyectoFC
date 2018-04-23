@@ -59,7 +59,7 @@
       socket.emit('adduser', userEmail);
 
       socket.on('updateusers', (data) => {
-        console.log(data);
+        // console.log(data);
       });
 
       socket.on('msg_user_handle', (username, msg) => {

@@ -37,7 +37,8 @@
     "ws": "3.3.2"
   },
   "scripts": {
-    "test": "node app.js"
+    "test": "node app.js",
+    "s": "nodemon app.js"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
+
 module.exports = function(server) {
   "use strict";
   var io = require("socket.io")(server);
   var redis = require("redis");
-
   /*
     io.use( (socket, next) =>{
         /** Middleware de session 
@@ -60,6 +60,7 @@ module.exports = function(server) {
       // echo to client their username
       socket.emit("store_username", username);
       // echo globally (all clients) that a person has connected
+      
       socket.broadcast.emit(
         "updatechat",
         "SERVER",
@@ -69,22 +70,26 @@ module.exports = function(server) {
       io.sockets.emit("updateusers", usernames);
     });
 
-    // when the user disconnects.. perform this
-    socket.on("disconnect", function() {
-      // remove the username from global usernames list
-      delete usernames[socket.username];
-      // update list of users in chat, client-side
-      io.sockets.emit("updateusers", usernames);
-      // echo globally that this client has left
-      socket.broadcast.emit(
-        "updatechat",
-        "SERVER",
-        socket.username + " has disconnected"
-      );
+    socket.on('disconnect', () => {
+
     });
+    // // when the user disconnects.. perform this
+    // socket.on("disconnect", function() {
+    //   // remove the username from global usernames list
+    //   delete usernames[socket.username];
+    //   // update list of users in chat, client-side
+    //   io.sockets.emit("updateusers", usernames);
+    //   // echo globally that this client has left
+    //   socket.broadcast.emit(
+    //     "updatechat",
+    //     "SERVER",
+    //     socket.username + " has disconnected"
+    //   );
+    // });
 
     // when the user sends a private msg to a user id, first find the username
-    socket.on("check_user", function(asker, id) {
+    socket.on("check_user", function(asker, email) {
+      let id = usernames[email];      
       //console.log("SEE: "+asker); console.log(id);
       // io.sockets.socket(usernames[asker]).emit("msg_user_found", check_key(id));
       io.sockets.connected[usernames[asker]].emit("msg_user_found", check_key(id));
