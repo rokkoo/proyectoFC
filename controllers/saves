@@ -1,0 +1,33 @@
+<% console.log("mascotas son: "+mascotas) %>
+                                            <% mascotas.forEach(function(mascota){ %>
+                                                <div class="post col-md-6">
+                                                    <div class="post-child post-left" style="text-align:left">
+                                                        <img src="<%- mascota.url %>" title="This is a placeholder image">
+                                                    </div>
+                                                    <div class="post-child post-right">
+                                                        <h1>
+                                                            <%- mascota.nombre %>
+                                                        </h1>
+                                                        <hr>
+                                                        <!-- <div class="datos">
+                                                            <span class=""> Información</span>
+                                                            <span class="data">
+                                                                <%- mascota.info %>
+                                                            </span>
+                                                        </div> -->
+                                                        <div>Edad:
+                                                            <%- mascota.edad %>
+                                                        </div>
+                                                        <div>Tamaño del perro:
+                                                            Grande
+                                                        </div>
+                                                        <div id="fecha">Fecha del post:
+                                                          <span><%- mascota.date%></span>
+                                                        </div>
+                                                        <!-- <div>ID persona:
+                                                            <%- mascota.idUser %>
+                                                        </div> -->
+                                                        <a class="btn-circle">&#x21e2;</a>
+                                                    </div>
+                                                </div>
+                                                <% }); %>
