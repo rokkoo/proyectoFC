@@ -15,6 +15,7 @@ const nodemailer = require('nodemailer');
 
 //Importamos nuestros controllers
 var index = require('./controllers/index');
+var baseDatos = require('./controllers/baseDatos');
 var mascotForm = require('./controllers/addMascot');
 var userForm = require('./controllers/UserController');
 var loginForm = require('./controllers/LoginController');
@@ -85,6 +86,7 @@ app.use(session({
 
 
 app.use('/', index);
+app.use('/baseDatos',baseDatos);
 app.use('/login', loginForm);
 app.use('/perfil', requireLogin, userForm);
 app.use('/registrate', registerForm);
