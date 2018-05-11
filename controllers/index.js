@@ -26,7 +26,7 @@ var io = socket(3030);
 function getCoordinates(){
   io.on("latitud", function(data){
     console.log("cliente cliente latitud: "+data["message"]);
-    origenLat=data["message"];
+    origenLat =  data["message"];
   });
   io.on("longitud", function(data){
     console.log("cliente longitud: "+data["message"]);
@@ -34,7 +34,7 @@ function getCoordinates(){
   });
 }
 //var io = socket(server);
-
+/*
 io.on("latitud", function(data){
   console.log("cliente cliente latitud: "+data["map"]);
   origenLat=data["map"];
@@ -42,6 +42,23 @@ io.on("latitud", function(data){
 io.on("longitud", function(data){
   console.log("cliente longitud: "+data["map"]);
   origenLon=data["map"];
+});
+*/
+var promise1 = new Promise(function(resolve, reject) {
+  io.on("latitud", function(data){
+    console.log("cliente cliente latitud: "+data["message"]);
+    origenLat =  data["message"];
+  });
+  io.on("longitud", function(data){
+    console.log("cliente longitud: "+data["message"]);
+    origenLon=data["message"];
+  });
+  resolve(origenLat);
+});
+
+promise1.then(function(value) {
+  console.log("RESOLVE: "+origenLat);
+  // expected output: "Success!"
 });
 
 router.get("/", (req, res, next) => {
@@ -172,6 +189,8 @@ function ordenar(mascotas){
   
   
   var distancias=[];
+  origenLat = 51.8979700;
+  origenLon = -8.4706100;
   //var origen = {"lat":51.903614,"lon":-8.468399};
   //var origenLat=sessionStorage.getItem("latitud");
   //console.log("LLEGAN LAS COORDENADAS: "+origenLat+" y "+origenLon);
@@ -206,8 +225,8 @@ function ordenar(mascotas){
       //console.log("RRR: "+R);
       //console.log("CCC: "+c);
       var distanciaKm = R * c;
-      console.log("LATITUD CLIENTE: "+origenLat);
-      console.log("LONGITUD CLIENTE: "+origenLon);
+      //console.log("LATITUD CLIENTE: "+origenLat);
+      //console.log("LONGITUD CLIENTE: "+origenLon);
       console.log("LATITUD MASCOTA: "+mascotas[i].lat);
       console.log("LONGITUD MASCOTAS: "+mascotas[i].long);
       console.log("NOMBRE MASCOTA : "+mascotas[i].nombre);
