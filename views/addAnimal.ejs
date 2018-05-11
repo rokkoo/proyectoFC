@@ -37,6 +37,9 @@
                                                     <label class="col-md-1 control-label">Edad</label>
                                                     <div class="col-md-1">
                                                         <input type="number" id="edad" name="edad" value="0" min="0" class="form-control" placeholder="Edad de la mascota">
+                                                        <button class="btn btn-success" type="button" onclick="getLocation()">Coger ubicacion</button>
+                                                        <input type="hidden" id="latitud" name="latitud" value="0">
+                                                        <input type="hidden" id="longitud" name="longitud" value="0">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -82,5 +85,43 @@
 
                 <% include ./layouts/scripts %>
         </body>
+        <script>
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+                var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
+                
+                var latitud = position.coords.latitude;
+                var longitud= position.coords.longitude;
+                document.getElementById("latitud").value=latitud;
+                document.getElementById("longitud").value = longitud;
+                console.log(latitud);
+                console.log(longitud);
+                socket.emit ('latitud', {map: latitud});
+                socket.emit ('longitud', {map: longitud});
+                
+                //socket.emit('longitud', "latitud");
+
+                sessionStorage.setItem("latitud", latitud);
+                sessionStorage.setItem("longitud", longitud);
+                //ordenar();
+                $.post(url, function () {
+                })
+                    .done(function () {
+                        $('#location').text('esperando...');
+                    })
+                    .always(function (data) {
+                        var data = data.results[0].address_components[1].long_name;
+                        //console.log(data)
+                        $('#location').html(`<p class="text-center"> <i class="fas fa-map-marker-alt fa-fw"></i> <div> ${data}</div></p>`);
+                    });
+            }
+        </script>
 
 </html>

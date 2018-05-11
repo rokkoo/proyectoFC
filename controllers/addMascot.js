@@ -57,7 +57,9 @@ router.post('/adopcion/nueva', (req, res, next) => {
                     info: req.body.info,
                     url: result.url,
                     date: moment().format('LL'),
-                    idUser: user
+                    idUser: user,
+                    lat: req.body.latitud,
+                    long: req.body.longitud
                 });
                 addedPet = mascot;
                 mascot.save()
