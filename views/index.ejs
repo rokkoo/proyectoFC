@@ -23,11 +23,8 @@
                                         <!-- Row start -->
                                         
                                         <div id="main" class="row">
-                                            <% console.log("mascotas son ander ag: "+mascotas[0]) %>
                                             
                                             <% mascotas.forEach(function(mascota){ %>
-                                                <%console.log("cliente cliente") %>
-                                                <% console.log(mascotas) %>
                                                 <div class="post col-md-6">
                                                     <div class="post-child post-left" style="text-align:left">
                                                         <img src="<%- mascota.url %>" title="This is a placeholder image">
@@ -82,6 +79,8 @@
                 <% include ./layouts/scripts %>
         </body>
         <script>
+            //var socket = io.connect('localhost:4000');
+            var socket = io.connect('http://localhost:3030');
             var alfonso = [];
             function ordenar(){
                 /*
@@ -160,7 +159,6 @@
                 //console.log("aqui");
                 //console.log(distancias);
                 //document.write("<p>Ciudades mas cercanas a cork</p>");
-                console.log("hola");
                 var animalesOrdenados=JSON.stringify(distancias);
                 sessionStorage.setItem("animalesOrdenados", animalesOrdenados);
                 arrayOrdenado=true;
@@ -178,7 +176,6 @@
                 url: 'http://localhost:88/baseDatos/buscarDatos',						
                 success: function(response) {
                     mascotas = response;
-                    console.log("HOLA HOLITA VECINITOS: "+mascotas[0].lat);
                     //console.log(response);
                     mascotas=JSON.stringify(mascotas);
                     sessionStorage.setItem("mascotas", mascotas);
@@ -197,11 +194,19 @@
 
             function showPosition(position) {
                 var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
+                
                 var latitud = position.coords.latitude;
                 var longitud= position.coords.longitude;
+                console.log(latitud);
+                console.log(longitud);
+                socket.emit ('latitud', {map: latitud});
+                socket.emit ('longitud', {map: longitud});
+                
+                //socket.emit('longitud', "latitud");
+
                 sessionStorage.setItem("latitud", latitud);
                 sessionStorage.setItem("longitud", longitud);
-                ordenar();
+                //ordenar();
                 $.post(url, function () {
                 })
                     .done(function () {
