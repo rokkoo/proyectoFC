@@ -3,6 +3,7 @@
 <% include ./layouts/head %>
     <% include ./layouts/imports %>
         <body>
+            
             <% include ./layouts/menuLateral %>
                 <!--Main Content Start -->
                 <section class="content">
@@ -20,7 +21,9 @@
                                         </div>
                                         <!-- ¡Aqui ponemos el contenido de la pagina! -->
                                         <!-- Row start -->
+                                        
                                         <div id="main" class="row">
+                                            
                                             <% mascotas.forEach(function(mascota){ %>
                                                 <div class="post col-md-6">
                                                     <div class="post-child post-left" style="text-align:left">
@@ -52,14 +55,14 @@
                                                         <a class="btn-circle">&#x21e2;</a>
                                                     </div>
                                                 </div>
-                                                <% }); %>
+                                                <% }); %> 
                                         </div>
                                         <!-- End of Row -->
 
                                     </div>
                                     <!-- End row -->
+
                                     </div>
-                                    <% include ./layouts/chat %>
                                     <!-- Page Content Ends -->
                                     <!-- ================== -->
                                     </div>
@@ -75,30 +78,6 @@
                 <!-- Main Content Ends -->
                 <% include ./layouts/scripts %>
         </body>
-        <script>
-            var x = document.getElementById("location");
 
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-            }
-
-            function showPosition(position) {
-                var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
-                $.post(url, function () {
-                })
-                    .done(function () {
-                        $('#location').text('esperando...');
-                    })
-                    .always(function (data) {
-                        var data = data.results[0].address_components[1].long_name;
-                        console.log(data)
-                        $('#location').html(`<p class="text-center"> <i class="fas fa-map-marker-alt fa-fw"></i> <div> ${data}</div></p>`);
-                    });
-            }
-        </script>
 
 </html>

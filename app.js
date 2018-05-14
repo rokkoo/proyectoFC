@@ -22,6 +22,7 @@ var registerForm = require('./controllers/RegisterController');
 var session = require('client-sessions');
 var realtime = require('./config/realtime/realTime');
 var streaming = require('./controllers/streaming');
+const baseDatos = require('./controllers/baseDatos');
 
 
 var view = '/views';
@@ -90,6 +91,7 @@ app.use('/perfil', requireLogin, userForm);
 app.use('/registrate', registerForm);
 app.use('/streaming', streaming);
 app.use('/nuevaMascota', requireLogin, mascotForm);
+app.use('/baseDatos',baseDatos);
 app.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');

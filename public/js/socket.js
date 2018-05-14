@@ -3,7 +3,8 @@ let my_username = '';
 let myChats = new Array({email: 'a@a.com',msg:'asdasd'},{email: 'b@a.com',msg:'a'},{email: 'c@a.com',msg:'b'});
 const myUsers = new Set();
 const usuarios = new Array();
-const server = '192.168.1.11:3000'
+const server = '192.168.137.34:3000'
+var socket = io.connect(server);
 comprobar = email => {
     //comprobamos que el array tenga el email
     if(myUsers.has(email)){
@@ -28,7 +29,6 @@ function send_individual_msg(email) {
     // socket.emit('check_user', my_username, id);
     //socket.emit('msg_user', id, my_username, prompt("Type your message:"));
 }
-var socket = io.connect(server);
 // on connection to server, ask for user's name with an anonymous callback
 socket.on('connect', function () {
     // call the server-side function 'adduser' and send one parameter (value of prompt)

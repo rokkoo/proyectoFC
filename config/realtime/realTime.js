@@ -16,6 +16,7 @@ module.exports = function(server) {
   client.subscribe("chat");
 
   client.on("message", function(channel, msg) {
+
     if (channel == "images") {
       // Canal de envio de nuevas imagenes
       io.emit("nuevo post", msg);
@@ -43,6 +44,18 @@ module.exports = function(server) {
 
   //Conexion con mensajes N-N
   io.on("connection", function(socket) {
+
+    socket.on("latitud", function(data){    
+      console.log("cliente cliente latitud: "+data);
+        let origenLat =  data;
+      });
+      socket.on("longitud", function(data){
+        console.log("cliente longitud: "+data);
+        let origenLon=data;
+      });
+
+
+
     // when the client emits 'sendchat', this listens and executes
     socket.on("sendchat", function(data) {
       // we tell the client to execute 'updatechat' with 2 parameters
