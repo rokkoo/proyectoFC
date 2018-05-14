@@ -16,13 +16,33 @@ var i = { name: "alf", edad: "23" };
 var client = redis.createClient();
 const options = { sort: { nombre: 1 } };
 var User = require('./../models/user');
+<<<<<<< HEAD
+=======
+var socket = require("socket.io");
+var socketPort=3030;
+>>>>>>> 6a34b4c6aed5b6741a8d51eb886924b0efa5b67d
 
 /** Pagina de inicio */
 var origenLat;
 var origenLon;
+<<<<<<< HEAD
 function getCoordinates(){
 
 }
+=======
+var io = socket(3030);
+function getCoordinates(){
+  io.on("latitud", function(data){
+    console.log("cliente cliente latitud: "+data["message"]);
+    origenLat =  data["message"];
+  });
+  io.on("longitud", function(data){
+    console.log("cliente longitud: "+data["message"]);
+    origenLon=data["message"];
+  });
+}
+//var io = socket(server);
+>>>>>>> 6a34b4c6aed5b6741a8d51eb886924b0efa5b67d
 /*
 io.on("latitud", function(data){
   console.log("cliente cliente latitud: "+data["map"]);
@@ -34,7 +54,19 @@ io.on("longitud", function(data){
 });
 */
 var promise1 = new Promise(function(resolve, reject) {
+<<<<<<< HEAD
 
+=======
+  io.on("latitud", function(data){
+    console.log("cliente cliente latitud: "+data["message"]);
+    origenLat =  data["message"];
+  });
+  io.on("longitud", function(data){
+    console.log("cliente longitud: "+data["message"]);
+    origenLon=data["message"];
+  });
+  resolve(origenLat);
+>>>>>>> 6a34b4c6aed5b6741a8d51eb886924b0efa5b67d
 });
 
 promise1.then(function(value) {
@@ -111,12 +143,17 @@ router.get("/registrate", (req, res, next) => {
 });
 
 router.post("/nuevo", (req, res, next) => {
+  console.log("accion " + req.body.accion);
   //Elementos que se capturan en el body
   let user = new User({
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     email: req.body.email,
     contrasena: req.body.contrasena,
+    telefono: req.body.telefono,
+    tipo: null,
+    notAnimalNuevo: req.body.notAnimalNuevo,
+    notAnimalPerdido: req.body.notAnimalPerdido,
   });
   user.save();
   if (email.Options(user.email, user)) {
@@ -149,8 +186,13 @@ function ordenar(mascotas){
   
   
   var distancias=[];
+<<<<<<< HEAD
   origenLat = 43.3380969;
   origenLon = -1.7888483000000406;
+=======
+  origenLat = 51.8979700;
+  origenLon = -8.4706100;
+>>>>>>> 6a34b4c6aed5b6741a8d51eb886924b0efa5b67d
   //var origen = {"lat":51.903614,"lon":-8.468399};
   //var origenLat=sessionStorage.getItem("latitud");
   //console.log("LLEGAN LAS COORDENADAS: "+origenLat+" y "+origenLon);

@@ -3,8 +3,37 @@
 <html lang="en">
     <% include ../layouts/head %>
     <% include ../layouts/imports %>
-    <body>
+    <link href="/css/login.css" rel="stylesheet">
 
+    <body>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+              <!-- Tabs Titles -->              
+              <% if(typeof(error) != 'undefined'){%>
+                <div id="error" class="alert alert-danger"><%= error %></div>
+                <%}%>
+              <h2 class="active"> ¡CONÉCTATE! </h2><br>
+
+              <!-- Icon -->
+              <div class="fadeIn first">
+                <img src="https://cdn0.iconfinder.com/data/icons/free-any-house/96/dog_house-home-256.png" id="icon" alt="AdoptApp, acoge a un amigo." />
+              </div>
+          
+              <!-- Login Form -->
+              <form action="login" method="post">
+                <input type="email" id="login" class="fadeIn second" name="logEmail" placeholder="Introduce tu e-mail...">
+                <input type="password" id="password" class="fadeIn third" name="logContrasena" placeholder="******************">
+                <input type="submit" class="fadeIn fourth" value="Log In">
+              </form>
+          
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <a class="underlineHover" href="#">¿Has olvidado tu contraseña?</a>
+              </div>
+          
+            </div>
+          </div>
+          <!--
         <div class="wrapper-page animated fadeInDown">
             <div class="panel panel-color panel-primary">
                 <div class="panel-heading"> 
@@ -55,7 +84,7 @@
                 </form>
 
             </div>
-        </div>
+        </div> -->
         <% include ../layouts/scripts %>
     </body>
 </html>

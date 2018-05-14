@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ./layouts/head %>
+<link href="/css/404.css" rel="stylesheet">
+
+    <% include ./layouts/imports %>
+
+        <body>
+            <% include ./layouts/menuLateral %>
+                <!--Main Content Start -->
+                <section class="content">
+                    <!-- Page Content Start -->
+                    <!-- ================== -->
+                    <% if(typeof(user) != 'undefined'){%>
+                        <% var usuario = user %>
+                            <%}%>
+                                <% include ./layouts/topNav %>
+                                    <div class="wraper container-fluid">
+                                        <h1>La página que buscabas...</h1>
+                                        <div class="window">
+                                        <div class="button"></div>
+                                        <div class="display">!qwerqqwer</div>
+                                        </div><!--end window-->
+                                        <p style="margin: 1%;">... no se ha encontrado en nuestros servidores, ¡<a href="#">contáctanos</a> si necesitas ayuda!</p>        
+                                    </div>
+                                    <!-- End row -->
+
+                                    </div>
+                                    <!-- Page Content Ends -->
+                                    <!-- ================== -->
+                                    </div>
+                                    <!-- Footer Start -->
+                                    <footer class="footer">
+                                        2015 © Velonic.
+                                    </footer>
+                                    <!-- Footer Ends -->
+
+
+
+                </section>
+                <!-- Main Content Ends -->
+                <% include ./layouts/scripts %>
+        </body>
+</html>

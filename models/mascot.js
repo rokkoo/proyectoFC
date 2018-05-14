@@ -5,6 +5,7 @@ let mascotSchema = new Schema({
     id: { type: String },
     nombre: {type: String},
     dueño: {type: String},
+    raza: {type: String},
     edad: { type: Number, min: 0 },
     info: {type: String},
     lat: {type:String},

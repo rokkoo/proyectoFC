@@ -19,13 +19,10 @@ router.post("/", function(req, res) {
   //                  nombre de campo input
   User.findOne({ email: req.body.logEmail }, function(err, user) {
     if (!user) {
-      res.render("users/loginUser", { error: "NO HAY USUARIO." });
+      res.render("users/loginUser", { error: "El usuario y contraseña no son válidos." });
     } else {
       console.log(user);
-      bcrypt.compare(req.body.logContrasena, user.contrasena, function(
-        err,
-        result
-      ) {
+      bcrypt.compare(req.body.logContrasena, user.contrasena, function(err,result) {
         console.log("entrando bcryps");
         if (result === true) {
           console.log("entrando true");
@@ -35,7 +32,7 @@ router.post("/", function(req, res) {
           res.redirect("/perfil");
         } else {
           console.log("entrando false");
-          res.render("users/loginUser", { error: "MAL LA CONTRASEÑA" });
+          res.render("users/loginUser", { error: "La contraseña no es correcta." });
         }
       });
     }
