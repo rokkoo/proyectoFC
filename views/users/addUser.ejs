@@ -2,10 +2,9 @@
 <html lang="en">
     <% include ../layouts/head %>
     <link rel="stylesheet" type="text/css" href="assets/form-wizard/jquery.steps.css" />
-    <link href="/css/unai.css" rel="stylesheet">
-
     <% include ../layouts/imports %>
-    
+    <link href="/css/register.css" rel="stylesheet">
+
     <body>
         <!--Main Content Start -->
             <!-- Page Content Start -->
@@ -86,7 +85,7 @@
                                                             </span>
                                                             <div class="form-group label-floating">
                                                                   <label class="control-label">Nombre ...   </label>
-                                                                  <input name="nombre" type="text" class="form-control">
+                                                                  <input name="nombre" type="text" class="form-control" tabindex="1">
                                                             </div>
                                                             
                                                         </div>
@@ -97,7 +96,7 @@
                                                             </span>
                                                             <div class="form-group label-floating">
                                                                   <label class="control-label">Correo Electrónico ...</label>
-                                                                  <input id="email" name="email" type="text" class="form-control">
+                                                                  <input id="email" name="email" type="text" class="form-control" tabindex="3">
                                                                 </div>
                                                         </div>
 
@@ -107,7 +106,7 @@
                                                             </span>
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">Contraseña:</label>
-                                                                <input id="contrasena" name="contrasena" type="password" class="form-control"> 
+                                                                <input id="contrasena" name="contrasena" type="password" class="form-control" tabindex="5"> 
                                                             </div>
                                                         </div>
         
@@ -118,7 +117,7 @@
                                                             </span>
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">... y apellidos</label>
-                                                                <input name="apellido" type="text" class="form-control">
+                                                                <input name="apellido" type="text" class="form-control" tabindex="2">
                                                             </div>
                                                         </div>
                                                         <div class="input-group">
@@ -126,7 +125,7 @@
                                                             </span>
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label"> ... y confirmación del correo.</label>
-                                                                <input id="emailConfirm" name="emailConfirm" type="text" class="form-control" onblur="confirmEmail()">
+                                                                <input id="emailConfirm" name="emailConfirm" type="text" class="form-control" onblur="confirmEmail()" tabindex="4">
                                                             </div>
                                                         </div>
                                                         <div class="input-group">
@@ -134,7 +133,7 @@
                                                             </span>
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label"> ... y confirmación de contraseña.</label>
-                                                                <input id="passConfirm"  name="passConfirm"  type="password" class="form-control" onblur="confirmPass()">
+                                                                <input id="passConfirm"  name="passConfirm"  type="password" class="form-control" onblur="confirmPass()" tabindex="6">
                                                             </div>
                                                             
                                                         </div>
@@ -148,7 +147,12 @@
                                                         <div class="form-group">
                                                             <div class="row">
                                                                 <div class="col-sm-12">
-                                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> Recibir noticias sobre:<br>
+                                                                        <input class="form-check-input" type="checkbox" value="1" name="notAnimalPerdido" id="notAnimalPerdido" tabindex="8"> Recibir noticias sobre si un perro se ha perdido. <br>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                        <input class="form-check-input" type="checkbox" value="1" name="notAnimalNuevo" id="notAnimalNuevo" tabindex="9"> Notificarme cuando un perro se da en adopción en mi zona. <br>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -162,29 +166,30 @@
                                                         </div>
                                                     </div>
                                             </div>
-                                        </div>
-                                        <div class="wizard-footer">
-                                            <div class="pull-right">
-                                                <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Siguiente' />
-                                                <input type='submit' class='btn btn-finish btn-fill btn-danger btn-wd' name='ey' value='Finalizar' />
+                                            <div class="wizard-footer">
+                                                <div class="pull-right">
+                                                    <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Siguiente' tabindex="7"/>
+                                                    <input type='submit' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finalizar' tabindex="10"/>
+                                                </div>
+                                                </div>
+                                                <div class="pull-left">
+                                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Paso anterior' />
+                                                </div>
+                                                <div class="clearfix"></div>
                                             </div>
-                                            <div class="pull-left">
-                                                <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Paso anterior' />
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div> <!-- wizard container -->
-                        </div>
-                    </div> <!-- row -->
-                </div> <!--  big container -->
-        
-            </div>
+                                        </form>
+                                    </div>
+                                </div> <!-- wizard container -->
+                            </div>
+                        </div> <!-- row -->
+                    </div> <!--  big container -->
+                </div>
 
 
         <!-- Main Content Ends -->
-        
+        <script type="text/javascript">
+
+        </script>
         <!--form validation-->
         <script type="text/javascript" src="assets/jquery.validate/jquery.validate.min.js"></script>
 

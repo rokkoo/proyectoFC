@@ -45,12 +45,17 @@ router.get("/registrate", (req, res, next) => {
 });
 
 router.post("/nuevo", (req, res, next) => {
+  console.log("accion " + req.body.accion);
   //Elementos que se capturan en el body
   let user = new User({
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     email: req.body.email,
     contrasena: req.body.contrasena,
+    telefono: req.body.telefono,
+    tipo: null,
+    notAnimalNuevo: req.body.notAnimalNuevo,
+    notAnimalPerdido: req.body.notAnimalPerdido,
   });
   user.save();
   if (email.Options(user.email, user)) {

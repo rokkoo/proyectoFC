@@ -385,11 +385,14 @@
             onNext: function(tab, navigation, index) {
                 var $valid = $('.wizard-card form').valid();
                 
-                if(!$valid) {
-                    $validator.focusInvalid();
-                    return false;
+                if(index == 2){
+                    if(!$valid) {
+                        $validator.focusInvalid();
+                        return false;
+                    }else{
+                        
+                    } 
                 }
-
 
             },
     
@@ -417,6 +420,14 @@
             onTabClick : function(tab, navigation, index){
                 var $valid = $('.wizard-card form').valid();
 
+                if(index == 2){
+                    if(!$valid) {
+                        $validator.focusInvalid();
+                        return false;
+                    }else{
+                        
+                    } 
+                }
             },
     
             onTabShow: function(tab, navigation, index) {
@@ -487,7 +498,19 @@
     
     });
     
-    
+    $('.btn-finish').click(function(e){
+        var $valid = $('.wizard-card form').valid();
+        alert();
+
+        if(!$valid) {
+            e.preventDefault();
+            $validator.focusInvalid();
+            return false;
+        }else{
+            alert("hola");
+        }
+
+    });
     
      //Function to show image before upload
     

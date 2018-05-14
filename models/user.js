@@ -17,6 +17,7 @@ let userSchema = new Schema({
         type: String,
         unique: true,
         required: true,
+        
         trim: true
       },
 
@@ -28,7 +29,8 @@ let userSchema = new Schema({
     telefono: {type: String},
     tipo: [{ rol: String},{ verificado: Boolean},{ curriculum: String} ],
     imgPerfil: {type: String},
-    notificaciones: [{idMP: String}],
+    notAnimalNuevo: { type: Boolean},
+    notAnimalPerdido: { type: Boolean},
 }, { versionKey: false });
 
 

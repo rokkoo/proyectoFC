@@ -16,6 +16,7 @@ const nodemailer = require('nodemailer');
 //Importamos nuestros controllers
 var index = require('./controllers/index');
 var mascotForm = require('./controllers/addMascot');
+var mascotasForm = require('./controllers/MascotasController');
 var userForm = require('./controllers/UserController');
 var loginForm = require('./controllers/LoginController');
 var registerForm = require('./controllers/RegisterController');
@@ -89,7 +90,8 @@ app.use('/login', loginForm);
 app.use('/perfil', requireLogin, userForm);
 app.use('/registrate', registerForm);
 app.use('/streaming', streaming);
-app.use('/nuevaMascota', requireLogin, mascotForm);
+app.use('/nuevamascota', requireLogin, mascotForm);
+app.use('/mascotas', mascotasForm);
 app.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');
@@ -170,7 +172,16 @@ stream.on('error', (error) => {
 });
 
 
+app.use(function(req, res, next){
+  res.status(404);
 
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('404', { url: req.url });
+    return;
+  }
+
+});
 
 
 
