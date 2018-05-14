@@ -8,6 +8,8 @@ let mascotSchema = new Schema({
     raza: {type: String},
     edad: { type: Number, min: 0 },
     info: {type: String},
+    lat: {type:String},
+    long:{type:String},
     url: {type: String},
     date: { type: String},
     idUser: {type: String},

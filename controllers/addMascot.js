@@ -47,6 +47,10 @@ router.post('/adopcion/nueva', (req, res, next) => {
         var hour = t.getHours()+":"+t.getMinutes();
         date = date+","+hour;
         console.log(moment().format('LL'))
+        if(req.body.latitud == 0 && req.body.longitud == 0){
+            req.body.latitud = 43.33823;
+            req.body.longitud = -1.789272;
+        }
         /** Subimos la imagen a cloudinary */
         cloudinary.uploader
             .upload(newPath,(result) => {
@@ -57,7 +61,9 @@ router.post('/adopcion/nueva', (req, res, next) => {
                     info: req.body.info,
                     url: result.url,
                     date: moment().format('LL'),
-                    idUser: user
+                    idUser: user,
+                    lat: req.body.latitud,
+                    long: req.body.longitud
                 });
                 addedPet = mascot;
                 mascot.save()
