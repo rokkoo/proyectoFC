@@ -49,8 +49,4 @@ router.get('/buscarDatos', function (req, res) {
 });
 //////////////////////////////
 
-<<<<<<< HEAD
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> 6a34b4c6aed5b6741a8d51eb886924b0efa5b67d
