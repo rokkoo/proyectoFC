@@ -29,7 +29,7 @@ router.post("/", function(req, res) {
 
           // sets a cookie with the user's info
           req.session.user = user;
-          res.redirect("/perfil");
+          res.redirect("/");
         } else {
           console.log("entrando false");
           res.render("users/loginUser", { error: "La contraseña no es correcta." });
