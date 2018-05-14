@@ -24,7 +24,6 @@ var registerForm = require('./controllers/RegisterController');
 var session = require('client-sessions');
 var realtime = require('./config/realtime/realTime');
 var streaming = require('./controllers/streaming');
-const baseDatos = require('./controllers/baseDatos');
 
 
 var view = '/views';
@@ -93,13 +92,8 @@ app.use('/login', loginForm);
 app.use('/perfil', requireLogin, userForm);
 app.use('/registrate', registerForm);
 app.use('/streaming', streaming);
-<<<<<<< HEAD
-app.use('/nuevaMascota', requireLogin, mascotForm);
-app.use('/baseDatos',baseDatos);
-=======
 app.use('/nuevamascota', requireLogin, mascotForm);
 app.use('/mascotas', mascotasForm);
->>>>>>> 6a34b4c6aed5b6741a8d51eb886924b0efa5b67d
 app.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');

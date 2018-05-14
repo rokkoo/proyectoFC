@@ -11,26 +11,30 @@
                     <!-- ================== -->
                     <% include ./layouts/topNav %>
                         <div class="wraper container-fluid">
-                            <div class="page-title">
-                                <h3 class="title">
-                                    <%= pagina %>
-                                </h3>
-                            </div>
                             <!-- ¡Aqui ponemos el contenido de la pagina! -->
-                            <%- mascota.edad %>,<%- mascota.long %>
             <div class="wraper container-fluid">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="bg-picture" style="background-image:url('img/bg_6.jpg')">
-                          <span class="bg-picture-overlay"></span><!-- overlay -->
+                        <div class="bg-picture" style="background-color: rgb(231, 231, 231)">
+                            <!-- overlay -->
                           <!-- meta -->
-                          <div class="box-layout meta bottom">
+                          <div class="box-layout meta top">
+                                <iframe
+                                width="100%"
+                                height="300"
+                                frameborder="0" style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBeFuRjFIYS-P6DKiIbv9snsFitAvQAPGI
+                                    &q=<%- mascota.lat %>,<%- mascota.long %>" allowfullscreen>
+                            </iframe>
+
+                            </div>
+                            <div class="box-layout meta bottom">
                             <div class="col-sm-6 clearfix">
                               <span class="img-wrapper pull-left m-r-15"><img src="<%- mascota.url %>" title="<%- mascota.nombre %>">
                               </span>
                               <div class="media-body">
-                                <h3 class="text-white mb-2 m-t-10 ellipsis"><%- mascota.nombre %></h3>
-                                <h5 class="text-white"><a href="usuarios/<%- mascota.dueño %>" <%- mascotausuario.nombre %></h5>
+                                <h2 class="text-black mb-2 m-t-10 ellipsis"><%- mascota.nombre %></h3>
+                                <h3 class="text-black"><a href="usuarios/<%- mascota.dueño %>" <%- mascotausuario.nombre %></h5>
                               </div>
                             </div>
                             <div class="col-sm-6">
@@ -173,13 +177,7 @@
 
 
         </div>
-        <iframe
-            width="600"
-            height="450"
-            frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBeFuRjFIYS-P6DKiIbv9snsFitAvQAPGI
-                &q=<%- mascota.lat %>,<%- mascota.long %>" allowfullscreen>
-        </iframe>
+
 
 
                         <!-- Page Content Ends -->

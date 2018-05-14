@@ -32,13 +32,6 @@ io.on("longitud", function(data){
   origenLon=data["map"];
 });
 */
-
-
-promise1.then(function(value) {
-  console.log("RESOLVE: "+origenLat);
-  // expected output: "Success!"
-});
-
 router.get("/", (req, res, next) => {
   veces.push(i);
   client.publish("chat", veces.toString());
