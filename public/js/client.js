@@ -66,110 +66,15 @@
         console.log(username);
         console.log(data);
       });
-
-      var alfonso = [];
-      function ordenar(){
-          /*
-          Number.prototype.toRad = function() {
-              return this * Math.PI / 180;
-          }
-          */
-          function toRad(numb){
-              numb=numb * Math.PI /180;
-              return numb;
-          }
-          
-          
-          var distancias=[];
-          //var origen = {"lat":51.903614,"lon":-8.468399};
-          var origenLat=sessionStorage.getItem("latitud");
-          var origenLatRad = toRad(origenLat);
-          var origenLon=sessionStorage.getItem("longitud");
-          var mascotas = sessionStorage.getItem("mascotas");
-          mascotas=JSON.parse(mascotas);
-          //console.log("mascotas: "+mascotas);
-          for(i=0;i<mascotas.length;i++){
-              
-              var destinoLat=mascotas[i].lat;
-              var destinoLatRad=toRad(destinoLat);
-              var destinoLon=mascotas[i].long;
-              
-              var R = 6371; // km 
-              
-              var distanciaLat = destinoLat-origenLat;
-              var distanciaLat = toRad(distanciaLat);;  
-              var distanciaLon = destinoLon-origenLon;
-              var distanciaLon = toRad(distanciaLon);  
-              var a = Math.sin(distanciaLat/2) * Math.sin(distanciaLat/2) + 
-                              Math.cos(origenLatRad) * Math.cos(destinoLatRad) * 
-                              Math.sin(distanciaLon/2) * Math.sin(distanciaLon/2);  
-              var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-              var distanciaKm = R * c;
-                      
-              var mascota = {
-                  "date":mascotas[i].date,
-                  "edad":mascotas[i].edad,
-                  "idUser":mascotas[i].idUser,
-                  "info":mascotas[i].info,
-                  "lat":mascotas[i].lat,
-                  "long":mascotas[i].long,
-                  "nombre":mascotas[i].nombre,
-                  "url":mascotas[i].url,
-                  "_id":mascotas[i]._id,
-                  "distancia":distanciaKm
-              };
-              
-              distancias[i]=mascota;
-          }
-
-          //console.log(distancias);
-          
-          var ordenado = false;
-          var movimiento;
-          var value;
-          do{
-              movimiento = false;
-              
-              for(i=0;i<distancias.length-1;i++){
-                  value=distancias[i];
-                  if(distancias[i].distancia>distancias[i+1].distancia){
-                      distancias[i]=distancias[i+1];
-                      distancias[i+1]=value;
-                      movimiento=true;
-                  }
-              }
-              if(!movimiento){
-                  ordenado=true;
-              }
-          }while(!ordenado);
-          //console.log("aqui");
-          //console.log(distancias);
-          //document.write("<p>Ciudades mas cercanas a cork</p>");
-          var animalesOrdenados=JSON.stringify(distancias);
-          sessionStorage.setItem("animalesOrdenados", animalesOrdenados);
-          arrayOrdenado=true;
-          sessionStorage.setItem("ordenado", arrayOrdenado);
-          //console.log(distancias);
-          
-      }
       
 
       ////////////////////////////////////////////////////////////
-      var mascotas;
-      $.ajax({
-          type: 'GET',
-          contentType: 'application/json',
-          url: 'http://localhost:3000/baseDatos/buscarDatos',						
-          success: function(response) {
-              mascotas = response;
-              //console.log(response);
-              mascotas=JSON.stringify(mascotas);
-              sessionStorage.setItem("mascotas", mascotas);
-          }
-      });
+
 
       var x = document.getElementById("location");
-
+      console.log('====================================');
+      console.log(mascotas);
+      console.log('====================================');
       function getLocation() {
           console.log('====================================');
           console.log('location');
@@ -195,7 +100,7 @@
 
           sessionStorage.setItem("latitud", latitud);
           sessionStorage.setItem("longitud", longitud);
-          //ordenar();
+          ordenar();
           $.post(url, function () {
           })
               .done(function () {
