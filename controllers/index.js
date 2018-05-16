@@ -13,14 +13,15 @@ const emailData = email.Options();
 var redis = require("redis");
 var veces = [];
 var i = { name: "alf", edad: "23" };
-var client = redis.createClient();
+let client = redis.createClient();
 const options = { sort: { nombre: 1 } };
 var User = require('./../models/user');
 
 
 /** Pagina de inicio */
-var origenLat;
-var origenLon;
+let origenLat = -38.416097;
+let origenLon = -63.616671999999994;
+let geOn = false;
 //var io = socket(server);
 /*
 io.on("latitud", function(data){
@@ -59,28 +60,42 @@ router.get("/ander", (req, res, next) => {
   veces.push(i);
   client.publish("chat", veces.toString());
 
-  Mascot.find()
+      Mascot.find()
     .sort("-_id") // ordenamos de manera ascendente
     .exec((err, mascotas) => {
+      let dataMascotas
       if (err) throw err;
-      ordenar(mascotas); //ordenamos las mascotas
-      var nombrePagina = "ADOPTAPP";
-      mascotasO.forEach(mascota => {
-        console.log('====================================');
-        console.log(mascota.nombre);
-        console.log(mascota.distancia);
-        console.log('====================================');
+      if(geOn) ordenar(mascotas); //ordenamos las mascotas
+      geOn == true ? dataMascotas = mascotasO : dataMascotas = mascotas;
+      console.log('====================================');
+      console.log("session lat: "+origenLat);
+      console.log("session lat: "+origenLon);
+      console.log("genOn "+geOn);
+      dataMascotas.forEach(mascotas => {
+        console.log(mascotas);
       });
+      console.log('====================================');
+      var nombrePagina = "ADOPTAPP";
       res.render("index", {
         usuario: req.session.user,
         pagina: nombrePagina,
-        mascotas: mascotasO,
+        mascotas: dataMascotas,
         moment: moment
       });
     });
 });
 
-
+router.post("/geo", (req, res, next) => {
+  geOn = true;
+  origenLat = JSON.stringify(req.body.lat);
+  origenLon = JSON.stringify(req.body.lon)
+  req.session.latitud = origenLat
+  req.session.longitud = origenLon
+  console.log('====================================');
+	console.log('body: '+req.session.latitud);
+  console.log('====================================');
+  res.redirect("/ander");
+});
 router.get("/registrate", (req, res, next) => {
   var nombrePagina = "REGISTRAR USUARIO";
   res.render("users/addUser", {
@@ -120,13 +135,13 @@ function ordenar(mascotas){
       numb=numb * Math.PI /180;
       return numb;
   }
-  
-  
+
   var distancias=[];
-  origenLat = -38.416097;
-  origenLon = -63.616671999999994;
+  console.log('====================================');
   console.log("LATITUD CLIENTE: "+origenLat);
   console.log("LONGITUD CLIENTE: "+origenLon);
+  console.log('====================================');
+
   var origenLatRad = toRad(origenLat);
   var mascotas = mascotas;
   for(i=0;i<mascotas.length;i++){

@@ -72,47 +72,69 @@
 
 
       var x = document.getElementById("location");
-      console.log('====================================');
-      console.log(mascotas);
-      console.log('====================================');
+      let latitud, longitud;
       function getLocation() {
-          console.log('====================================');
-          console.log('location');
-          console.log('====================================');
+          geoAceptada = sessionStorage.getItem('geOn');
           if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(showPosition);
+                if(geoAceptada) addUbicacion();
+                else navigator.geolocation.getCurrentPosition(showPosition,geoError);
           } else {
               x.innerHTML = "Geolocation is not supported by this browser.";
           }
       }
+      function geoError() {
+        console.log('localizacion no aceptada');
+        sessionStorage.setItem('geOn',false);
+    }
       function showPosition(position) {
-          console.log('====================================');
-          console.log('entras a enviar');
-          console.log('====================================');
-          var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
+        sessionStorage.setItem('geOn',true);
           
-          var latitud = position.coords.latitude;
-          var longitud= position.coords.longitude;
-          console.log(latitud);
-          console.log(longitud);
-          socket.emit('latitud', latitud);
-          socket.emit('longitud', longitud);
+          latitud = position.coords.latitude;
+          longitud= position.coords.longitude;
+
+          //Enviamos las variables al server
 
           sessionStorage.setItem("latitud", latitud);
           sessionStorage.setItem("longitud", longitud);
-          ordenar();
-          $.post(url, function () {
-          })
-              .done(function () {
-                  $('#location').text('esperando...');
-              })
-              .always(function (data) {
-                  var data = data.results[0].address_components[1].long_name;
-                  //console.log(data)
-                  $('#location').html(`<p class="text-center"> <i class="fas fa-map-marker-alt fa-fw"></i> <div> ${data}</div></p>`);
-              });
+        addUbicacion();
       }
-      
+      addUbicacion = () => {
+          latitud = sessionStorage.getItem('latitud');
+          longitud = sessionStorage.getItem('longitud');
+          console.log('====================================');
+          console.log(latitud);
+          console.log(longitud);
+          console.log('====================================');
+        var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitud},${longitud}&key=AIzaSyA88ZZI6IIhaXxQ0YrQHvRsInn7SGnQVbE`;
+        $.post(url, function () {
+        })
+            .done(function () {
+                $('#location').text('esperando...');
+            })
+            .always(function (data) {
+                var data = data.results[0].address_components[1].long_name;
+                //console.log(data)
+                $('#location').html(`<p class="text-center"> <i class="fas fa-map-marker-alt fa-fw"></i> <div> ${data}</div></p>`);
+            });
+            lat = parseFloat(latitud)
+            lon = parseFloat(longitud)
+            let data = {};
+            data.lat = lat;
+            data.lon = lon;
+            console.log('====================================');
+            console.log('location'+data);
+            console.log('====================================');
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: 'http://localhost:3000/geo',						
+                success: function(data) {
+                    console.log('success');
+                    console.log(JSON.stringify(data));
+                }
+            });
+      }
       function pasarValores(){
           var animales = document.getElementById
           for(i=0;i<distancias.length;i++){
@@ -135,3 +157,6 @@
           }
       }
 
+$(document).ready(() => {
+addUbicacion();
+})

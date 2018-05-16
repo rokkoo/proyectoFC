@@ -7,7 +7,6 @@ const redis = require('redis');
 
 //variables de entorno
 require('dotenv').config();
-console.log(process.env.PORT);
 
 
 //emails
@@ -30,12 +29,18 @@ var view = '/views';
 
 const app = new express();
 
-const http = require('http').Server(app);
+const http = require('http').Server(app),
+      sessionIo = require("express-session")({
+        secret: "addoptap",
+        resave: true,
+        saveUninitialized: true
+      }),
+      sharedsession = require("express-socket.io-session");
+
 var router = express.Router();
-realtime(http);
+realtime(http,sessionIo,sharedsession);
 //var io = require("socket.io")(http);
 app.enable('trust proxy');
-
 app.use(function(req, res, next) {
   if (req.session && req.session.user) {
     User.findOne({ email: req.session.user.email }, function(err, user) {
@@ -67,7 +72,6 @@ function requireLogin (req, res, next) {
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.use(multipart()); //Express 4
-
 
 app.use(express.static('public'));
 //Nuestro sistema de templates - EJS

@@ -2,6 +2,7 @@
 module.exports = function(server) {
   "use strict";
   var io = require("socket.io")(server);
+
   var redis = require("redis");
   /*
     io.use( (socket, next) =>{
@@ -10,11 +11,12 @@ module.exports = function(server) {
     */
   var client = redis.createClient();
   var chat = redis.createClient();
-
+  let origenLat = -38.416097,
+      origenLon = -63.616671999999994;
   client.subscribe("images");
   client.subscribe("nuevoTwitt");
   client.subscribe("chat");
-
+  client.subscribe("getCordenadas");
   client.on("message", function(channel, msg) {
 
     if (channel == "images") {
@@ -47,11 +49,11 @@ module.exports = function(server) {
 
     socket.on("latitud", function(data){    
       console.log("cliente cliente latitud: "+data);
-        let origenLat =  data;
+        origenLat =  data;
       });
       socket.on("longitud", function(data){
         console.log("cliente longitud: "+data);
-        let origenLon=data;
+        origenLon=data;
       });
 
 
