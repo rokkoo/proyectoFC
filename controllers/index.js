@@ -109,6 +109,8 @@ router.post("/nuevo", (req, res, next) => {
     email: req.body.email,
     contrasena: req.body.contrasena,
     telefono: req.body.telefono,
+    codPostal: req.body.codPostal,
+    direccion: req.body.direccion,
     tipo: null,
     notAnimalNuevo: req.body.notAnimalNuevo,
     notAnimalPerdido: req.body.notAnimalPerdido,

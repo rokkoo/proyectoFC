@@ -21,7 +21,17 @@ let userSchema = new Schema({
         trim: true
       },
 
-    contrasena: {
+      contrasena: {
+        type: String,
+        required: true,
+      },
+
+      codPostal: {
+        type: String,
+        required: true,
+      },
+
+      direccion: {
         type: String,
         required: true,
       },

@@ -355,6 +355,20 @@
                   required: true,
                   minlength: 3,
                 },
+                telefono: {
+                  required: true,
+                  minlength: 9,
+                  maxlength: 9,
+                },
+                codPostal: {
+                  required: true,
+                  minlength: 5,
+                  maxlength: 5,
+                },
+                direccion: {
+                  required: true,
+                  minlength: 3,
+                },
                 emailConfirm: {
                     required: true,
                     minlength: 5,
@@ -431,16 +445,21 @@
             },
     
             onTabShow: function(tab, navigation, index) {
-                var $total = navigation.find('li').length;
+                var $total = navigation.find('li').length -1;
                 var $current = index+1;
     
                 var $wizard = navigation.closest('.wizard-card');
     
                 // If it's the last tab then hide the last button and show the finish instead
-                if($current >= $total) {
+                if($current == $total) {
                     $($wizard).find('.btn-next').hide();
                     $($wizard).find('.btn-finish').show();
-                } else {
+                } else if($current > $total){
+                    $($wizard).find('.btn-finish').hide();
+                    $($wizard).find('.btn-next').hide();
+                    $($wizard).find('.btn-previous').show();
+                } 
+                else {
                     $($wizard).find('.btn-next').show();
                     $($wizard).find('.btn-finish').hide();
                 }
@@ -500,14 +519,12 @@
     
     $('.btn-finish').click(function(e){
         var $valid = $('.wizard-card form').valid();
-        alert();
 
         if(!$valid) {
             e.preventDefault();
             $validator.focusInvalid();
             return false;
         }else{
-            alert("hola");
         }
 
     });
