@@ -89,7 +89,7 @@ app.use(session({
 app.use('/', index);
 app.use('/baseDatos',baseDatos);
 app.use('/login', loginForm);
-app.use('/perfil', requireLogin, userForm);
+app.use('/perfil', userForm);
 app.use('/registrate', registerForm);
 app.use('/streaming', streaming);
 app.use('/nuevamascota', requireLogin, mascotForm);
