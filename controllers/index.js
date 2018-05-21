@@ -105,7 +105,6 @@ router.get("/registrate", (req, res, next) => {
 });
 
 router.post("/nuevo", (req, res, next) => {
-  console.log("accion " + req.body.accion);
   //Elementos que se capturan en el body
   let user = new User({
     nombre: req.body.nombre,
