@@ -38,8 +38,8 @@
     "ws": "3.3.2"
   },
   "scripts": {
-    "test": "node app.js",
-    "s": "nodemon app.js"
+    "start": "nodemon app.js",
+    "matar": "killall -9 node"
   },
   "repository": {
     "type": "git",

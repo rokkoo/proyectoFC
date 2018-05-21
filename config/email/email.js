@@ -46,8 +46,6 @@ module.exports.Options = (to,vars) => {
     //Compilamos los datos con el template
     transporter.use('compile', hbs(options));
 
-    //Enviamos el correo
-    console.log(send(mailOptions));
-    
+    //Enviamos el correo    
     return send(mailOptions);
 };

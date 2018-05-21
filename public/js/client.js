@@ -99,6 +99,8 @@
         addUbicacion();
       }
       addUbicacion = () => {
+          console.log('enviamos la vars');
+          
           latitud = sessionStorage.getItem('latitud');
           longitud = sessionStorage.getItem('longitud');
           console.log('====================================');
@@ -121,18 +123,11 @@
             let data = {};
             data.lat = lat;
             data.lon = lon;
-            console.log('====================================');
-            console.log('location'+data);
-            console.log('====================================');
             $.ajax({
                 type: 'POST',
                 data: JSON.stringify(data),
                 contentType: 'application/json',
-                url: 'http://localhost:3000/geo',						
-                success: function(data) {
-                    console.log('success');
-                    console.log(JSON.stringify(data));
-                }
+                url: 'http://localhost:3000/geo'						
             });
       }
       function pasarValores(){

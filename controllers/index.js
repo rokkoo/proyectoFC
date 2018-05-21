@@ -85,7 +85,7 @@ router.get("/ander", (req, res, next) => {
     });
 });
 
-router.post("/geo", (req, res, next) => {
+router.post("/geo", (req, res) => {
   geOn = true;
   origenLat = JSON.stringify(req.body.lat);
   origenLon = JSON.stringify(req.body.lon)
@@ -94,7 +94,7 @@ router.post("/geo", (req, res, next) => {
   console.log('====================================');
 	console.log('body: '+req.session.latitud);
   console.log('====================================');
-  res.redirect("/ander");
+  res.redirect("/perfil");
 });
 router.get("/registrate", (req, res, next) => {
   var nombrePagina = "REGISTRAR USUARIO";

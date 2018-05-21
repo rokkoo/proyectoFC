@@ -118,14 +118,14 @@ const rClient = redis.createClient();
 //Twitter client - appadoptes@gmail.com
 
 const client = new Twitter({
-  consumer_key: 'aYataD59dggFZgiKKkYpN07Oz',
-  consumer_secret: 'aCV2OsIROshZyL7RB9WxBarn4LaMLMeydcv97XoVsyDg0ElKr7',
-  access_token_key: '979817070547390464-rO0Wr3iN4JzllPzt5iyiQFzMAKfg5dU',
-  access_token_secret: 'qSxnE8Rm2nKqArnuocJqDQxOsquPQPgk7IXUgXjh2qnXE'
+  consumer_key: 'QPVhuH5TqE7s5QJ3DdVqEKCAy',
+  consumer_secret: 'mJc2EBaPR2U8mRWJOpNUUQ6BBd4xEp9clTHd0lDjiqQ49xPfx1',
+  access_token_key: '548766227-3XkCg04G6F3Zqy1HnlmD0wRUFqtBbT5hdvTShhNH',
+  access_token_secret: 'NiSYFiW5NHKhbAMphtKEZY1ZnowKvCLYksxpulwE2pogP'
 });
 
 //Escucha del stream - track:palabras claves
-const stream = client.stream('statuses/filter', {track:'#adopcionApp'});
+const stream = client.stream('statuses/filter', {track:'#plaiaundiApp'});
 stream.on('data', (tweet) => {
 
   /* Hacamos retwitt */
