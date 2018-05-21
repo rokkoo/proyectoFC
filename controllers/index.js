@@ -126,7 +126,7 @@ router.post("/nuevo", (req, res, next) => {
   }
 
   req.session.userId = user._id;
-  res.redirect("/perfil");
+  res.redirect("/login");
   // alfonso.save().then(() => console.log(alfonso.username));
 });
 

@@ -50,13 +50,16 @@ let userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
     var user = this;
-    bcrypt.hash(user.contrasena, 10, function (err, hash){
-      if (err) {
-        return next(err);
-      }
-      user.contrasena = hash;
-      next();
-    })
+    if(user.emailConfirmado == 0){
+      bcrypt.hash(user.contrasena, 10, function (err, hash){
+        if (err) {
+          return next(err);
+        }
+        user.contrasena = hash;
+      })
+    }
+    next();
+
   });
 
   let User = mongoose.model('User', userSchema);
