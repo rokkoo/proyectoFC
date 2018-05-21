@@ -15,7 +15,7 @@
                  <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading" align="center"><h3 class="panel-title">PERFIL DE: <%= user.nombre %></h3></div>
+                            <div class="panel-heading" align="center"><h3 class="panel-title">PERFIL DE: <%= usuario.nombre %></h3></div>
                             <div class="panel-body">
                                 <div class="wraper container-fluid">
                                     <div class="row">
@@ -30,7 +30,7 @@
                                                 <div class="col-sm-6 clearfix">
                                                   </span>
                                                   <div class="media-body">
-                                                    <h2 class="text-black mb-3 m-t-10 ellipsis"><%- user.nombre %></h3>
+                                                    <h2 class="text-black mb-3 m-t-10 ellipsis"><%- usuario.nombre %></h3>
                                                   </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -59,7 +59,7 @@
                                                 <div class="panel-body p-0"> 
                                                     <ul class="nav nav-tabs profile-tabs">
                                                         <li class="active"><a data-toggle="tab" href="#aboutme">Sobre mi</a></li>
-                                                        <li class=""><a data-toggle="tab" href="#aboutuser">Sobre el dueño</a></li>
+                                                        <li class=""><a data-toggle="tab" href="#aboutusuario">Sobre el dueño</a></li>
                                                     </ul>
                     
                                                     <div class="tab-content m-0"> 
@@ -80,8 +80,8 @@
                                                                     <tr>
                                                                         <td><b>Dueño:</b></td>
                                                                         <td>
-                                                                        <a href="/users/<%- user._id %>" class="ng-binding">
-                                                                            <%- user.nombre %>  <%- user.apellido %>
+                                                                        <a href="/perfil/<%- usuario._id %>" class="ng-binding">
+                                                                            <%- usuario.nombre %>  <%- usuario.apellido %>
                                                                         </a></td>
                                                                     </tr>
                                                                     <tr>
@@ -107,7 +107,7 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                             <div class="panel panel-primary">
-                                                                                <div class="panel-heading" align="center"> <%- mascota.nombre %></div>
+                                                                                <div class="panel-heading" align="center"><a href="/mascotas/<%- mascota._id %>"> <%- mascota.nombre %></a></div>
                                                                                 <div class="panel-body">
                                                                                     <div class="col-md-2">
                                                                                         <div class="post-child post-left" style="text-align:left">
@@ -124,11 +124,9 @@
                                                                                     </div>
                                                                                     <div class="col-md-1 pull-right">
                                                                                             <i id="dislike1" class="glyphicon glyphicon-thumbs-down"></i> <div id="dislike1-bs3"></div> 
-
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="clearfix"></div>
-
                                                                         </div>
                                                                     </div>    
                                                                 </div>
@@ -138,13 +136,13 @@
                     
                     
                                                     <!-- Activities -->
-                                                    <div id="aboutuser" class="tab-pane">
+                                                    <div id="aboutusuario" class="tab-pane">
                                                             <div class="profile-desk">
                                                                 
-                                                                <h1><%- user.nombre %> <%- user.apellido %></h1>
-                                                                <span class="designation"><%- user.email %></span>
+                                                                <h1><%- usuario.nombre %> <%- usuario.apellido %></h1>
+                                                                <span class="designation"><%- usuario.email %></span>
                                                                 <p>
-                                                                    Hola buenas me llamo <%- user.nombre %>
+                                                                    Hola buenas me llamo <%- usuario.nombre %>
                                                                 </p>
                         
                                                                 <table class="table table-condensed">
@@ -157,13 +155,13 @@
                                                                         <tr>
                                                                             <td><b>Nombre:</b></td>
                                                                             <td>
-                                                                                <%- user.nombre %>  <%- user.apellido %>
+                                                                                <%- usuario.nombre %>  <%- usuario.apellido %>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td><b>Email:</b></td>
                                                                             <td>
-                                                                                <%- user.email %>
+                                                                                <%- usuario.email %>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

@@ -97,6 +97,7 @@ p {
   font-size: 75px;
   margin-left: 10%;
   margin-top: 5%;
+  align-content: center;
   font-weight: bold;
 }
 .window .display::before {

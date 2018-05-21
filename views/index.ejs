@@ -2,6 +2,8 @@
 <html lang="en">
 <% include ./layouts/head %>
     <% include ./layouts/imports %>
+    <link href="/css/404.css" rel="stylesheet">
+
         <body>
             
             <% include ./layouts/menuLateral %>
@@ -24,6 +26,17 @@
                                         
                                         <div id="main" class="row">
                                             
+                                            <% if(mascotas.length == 0){ %>
+                                                <div class="wraper container-fluid">
+                                                    <h1>No hay publicaciones...</h1>
+                                                    <div class="window">
+                                                    <div class="button"></div>
+                                                    <div class="display">¡OOOUPS!</div>
+                                                    </div><!--end window-->
+                                                    <p style="margin: 1%;">... de momento, si deseas agregar una nueva mascota ¡<a href="#">pulsa aquí</a>.</p>        
+                                                </div>
+                                            <% } %>
+
                                             <% mascotas.forEach(function(mascota){ %>
                                                 <div class="post col-md-6">
                                                     <div class="post-child post-left" style="text-align:left">

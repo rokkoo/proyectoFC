@@ -35,6 +35,10 @@ let userSchema = new Schema({
         type: String,
         required: true,
       },
+
+      emailConfirmado: {
+        type: Number,
+      },
     
     telefono: {type: String},
     tipo: [{ rol: String},{ verificado: Boolean},{ curriculum: String} ],

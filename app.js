@@ -24,6 +24,7 @@ var registerForm = require('./controllers/RegisterController');
 var session = require('client-sessions');
 var realtime = require('./config/realtime/realTime');
 var streaming = require('./controllers/streaming');
+var confirmarForm = require('./controllers/confirmEmail');
 
 
 var view = '/views';
@@ -92,6 +93,8 @@ app.use('/login', loginForm);
 app.use('/perfil', userForm);
 app.use('/registrate', registerForm);
 app.use('/streaming', streaming);
+app.use('/confirmar', confirmarForm);
+
 app.use('/nuevamascota', requireLogin, mascotForm);
 app.use('/mascotas', mascotasForm);
 app.get('/logout', function(req, res) {
@@ -176,10 +179,9 @@ stream.on('error', (error) => {
 
 app.use(function(req, res, next){
   res.status(404);
-
   // respond with html page
   if (req.accepts('html')) {
-    res.render('404', { url: req.url });
+    res.render('404', { url: req.url, usuario : req.session.user });
     return;
   }
 
