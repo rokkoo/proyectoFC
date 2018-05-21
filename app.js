@@ -23,6 +23,7 @@ var registerForm = require('./controllers/RegisterController');
 var session = require('client-sessions');
 var realtime = require('./config/realtime/realTime');
 var streaming = require('./controllers/streaming');
+var confirmarForm = require('./controllers/confirmEmail');
 
 
 var view = '/views';
@@ -82,8 +83,8 @@ app.set('views', 'views');
 app.use(session({
   cookieName: 'session',
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
+  duration: 30 * 60 * 10000000,
+  activeDuration: 5 * 60 * 10000000,
   httpOnly: true,
   secure: true,
   ephemeral: true
@@ -93,9 +94,11 @@ app.use(session({
 app.use('/', index);
 app.use('/baseDatos',baseDatos);
 app.use('/login', loginForm);
-app.use('/perfil', requireLogin, userForm);
+app.use('/perfil', userForm);
 app.use('/registrate', registerForm);
 app.use('/streaming', streaming);
+app.use('/confirmar', confirmarForm);
+
 app.use('/nuevamascota', requireLogin, mascotForm);
 app.use('/mascotas', mascotasForm);
 app.get('/logout', function(req, res) {
@@ -180,10 +183,9 @@ stream.on('error', (error) => {
 
 app.use(function(req, res, next){
   res.status(404);
-
   // respond with html page
   if (req.accepts('html')) {
-    res.render('404', { url: req.url });
+    res.render('404', { url: req.url, usuario : req.session.user });
     return;
   }
 

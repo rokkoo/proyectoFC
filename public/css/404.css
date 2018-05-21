@@ -8,7 +8,7 @@ h1 {
   padding: 0;
   margin: 0;
   font-size: 3em;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 p {
   text-align: center;
@@ -18,9 +18,9 @@ p {
 }
 .window {
   margin: 0 auto;
-  margin-top: 15px;
-  height: 150px;
-  width: 400px;
+  margin-top: 5px;
+  height: 325px;
+  width: 50%;
   background: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -31,11 +31,11 @@ p {
 .window::before {
   content: "";
   position: absolute;
-  width: 10%;
-  height: 325px;
+  width: 20%;
+  height: 35%;
   background: rgba(230, 230, 230, 0.3);
-  z-index: 999;
-  margin-left: 100px;
+  z-index: 996;
+  margin-left: 10%;
   -webkit-border-top-right-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
   -moz-border-radius-topright: 5px;
@@ -46,7 +46,7 @@ p {
 .window::after {
   content: "";
   position: absolute;
-  width: 30%;
+  width: 42.6%;
   height: 20px;
   background: #e3e3e3;
   -webkit-border-top-left-radius: 5px;
@@ -95,8 +95,9 @@ p {
   z-index: 999;
   font-family: helvetica;
   font-size: 75px;
-  margin-left: 78px;
-  margin-top: 40px;
+  margin-left: 10%;
+  margin-top: 5%;
+  align-content: center;
   font-weight: bold;
 }
 .window .display::before {

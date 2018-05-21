@@ -14,15 +14,25 @@
                     <% if(typeof(user) != 'undefined'){%>
                         <% var usuario = user %>
                             <%}%>
-                                <% include ./layouts/topNav %>
+                            <% include ./layouts/topNav %>
+                                <% if(usuario.emailConfirmado == 1){ %>
                                     <div class="wraper container-fluid">
-                                        <h1>La página que buscabas...</h1>
+                                        <h1>¡Tu cuenta ya está confirmada!</h1>
                                         <div class="window">
                                         <div class="button"></div>
-                                        <div class="display">¡OOOUPS!</div>
+                                        <div class="display">¡EEEY!</div>
                                         </div><!--end window-->
-                                        <p style="margin: 1%;">... no se ha encontrado en nuestros servidores, ¡<a href="#">contáctanos</a> si necesitas ayuda!</p>        
+                                        <p style="margin: 1%;">... ya puedes ¡<a href="/login">conectarte</a>!</p>        
                                     </div>
+                                <% }else{ %>
+                                    <div class="wraper container-fluid">
+                                        <div class="window">
+                                        <div class="button"></div>
+                                        <div class="display">¡Confirmado!</div>
+                                        </div><!--end window-->
+                                        <p style="margin: 1%;">... ya puedes ¡<a href="/login">conectarte</a>!</p>        
+                                    </div>
+                                <% } %>
                                     <!-- End row -->
 
                                     </div>

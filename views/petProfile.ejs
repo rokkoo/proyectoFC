@@ -34,7 +34,7 @@
                               </span>
                               <div class="media-body">
                                 <h2 class="text-black mb-2 m-t-10 ellipsis"><%- mascota.nombre %></h3>
-                                <h3 class="text-black"><a href="usuarios/<%- mascota.dueño %>" <%- mascotausuario.nombre %></h5>
+                                <h3 class="text-black"><a href="perfil/<%- mascota.idUser %>" <%- mascotausuario.nombre %></h5>
                               </div>
                             </div>
                             <div class="col-sm-6">
@@ -63,12 +63,12 @@
                             <div class="panel-body p-0"> 
                                 <ul class="nav nav-tabs profile-tabs">
                                     <li class="active"><a data-toggle="tab" href="#aboutme">Sobre mi</a></li>
-                                    <li class=""><a data-toggle="tab" href="#user-activities">Sobre el dueño</a></li>
+                                    <li class=""><a data-toggle="tab" href="#aboutuser">Sobre el dueño</a></li>
                                 </ul>
 
                                 <div class="tab-content m-0"> 
 
-                                    <div id="aboutme" class="tab-pane active">
+                                <div id="aboutme" class="tab-pane active">
                                     <div class="profile-desk">
                                         <h1><%- mascota.nombre %></h1>
                                         <span class="designation"><%- mascota.raza %></span>
@@ -86,7 +86,7 @@
                                                 <tr>
                                                     <td><b>Dueño:</b></td>
                                                     <td>
-                                                    <a href="/usuarios/<%- mascotausuario._id %>" class="ng-binding">
+                                                    <a href="/perfil/<%- mascotausuario._id %>" class="ng-binding">
                                                         <%- mascotausuario.nombre %>  <%- mascotausuario.apellido %>
                                                     </a></td>
                                                 </tr>
@@ -101,13 +101,6 @@
                                                     <td><b>Phone</b></td>
                                                     <td class="ng-binding">(123)-456-7890</td>
                                                 </tr>
-                                                <tr>
-                                                    <td><b>Skype</b></td>
-                                                    <td>
-                                                    <a href="" class="ng-binding">
-                                                        jonathandeo123
-                                                    </a></td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div> <!-- end profile-desk -->
@@ -115,55 +108,38 @@
 
 
                                 <!-- Activities -->
-                                <div id="user-activities" class="tab-pane">
-                                    <div class="timeline-2">
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">5 minutes ago</div>
-                                                <p><strong><a href="#" class="text-info">John Doe</a></strong> Uploaded a photo <strong>"DSC000586.jpg"</strong></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">30 minutes ago</div>
-                                                <p><a href="" class="text-info">Lorem</a> commented your post.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">59 minutes ago</div>
-                                                <p><a href="" class="text-info">Jessi</a> attended a meeting with<a href="#" class="text-success">John Doe</a>.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">5 minutes ago</div>
-                                                <p><strong><a href="#" class="text-info">John Doe</a></strong>Uploaded 2 new photos</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">30 minutes ago</div>
-                                                <p><a href="" class="text-info">Lorem</a> commented your post.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">59 minutes ago</div>
-                                                <p><a href="" class="text-info">Jessi</a> attended a meeting with<a href="#" class="text-success">John Doe</a>.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div id="aboutuser" class="tab-pane">
+                                        <div class="profile-desk">
+                                            <a href="/perfil/<%- mascotausuario._id %>"><h1><%- mascotausuario.nombre %> <%- mascotausuario.apellido %></h1></a>
+                                            <span class="designation"><%- mascotausuario.email %></span>
+                                            <p>
+                                                Hola buenas me llamo <%- mascotausuario.nombre %>
+                                            </p>
+    
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="3"><h3>Informacion sobre nuestro amigo:</h3></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>Nombre:</b></td>
+                                                        <td>
+                                                            <%- mascotausuario.nombre %>  <%- mascotausuario.apellido %>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Email:</b></td>
+                                                        <td>
+                                                            <%- mascotausuario.email %>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end profile-desk -->
+                                    </div> <!-- about-me -->
+    
                             </div>
              
                         </div> 

@@ -31,13 +31,13 @@ let send = mailOptions => {
     return enviado;
 };
 
-module.exports.Options = (to,vars) => {
+module.exports.Options = (to, vars, vista) => {
     let mailOptions = {
         from: '<appadoptes@gmail.com>',
         to: to,
         subject: 'Adoptapp',
         // html: '<h1> Hola! </h1>'
-        template: 'hello',
+        template: vista,
         context:{
           data: vars
         }

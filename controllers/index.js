@@ -113,19 +113,24 @@ router.post("/nuevo", (req, res, next) => {
     email: req.body.email,
     contrasena: req.body.contrasena,
     telefono: req.body.telefono,
+    codPostal: req.body.codPostal,
+    direccion: req.body.direccion,
     tipo: null,
     notAnimalNuevo: req.body.notAnimalNuevo,
     notAnimalPerdido: req.body.notAnimalPerdido,
+    emailConfirmado: 0,
   });
   user.save();
-  if (email.Options(user.email, user)) {
+
+  if (email.Options(user.email, user, "confirmEmail")) {
     res.statusCode = 200;
     //res.send('Email sent!');
   }else{
     return res.send('fallo al enviar el email');
   }
+
   req.session.userId = user._id;
-  res.redirect("/perfil");
+  res.redirect("/login");
   // alfonso.save().then(() => console.log(alfonso.username));
 });
 

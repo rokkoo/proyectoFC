@@ -27,12 +27,18 @@ router.post("/", function(req, res) {
         if (result === true) {
           console.log("entrando true");
 
+          if(user.emailConfirmado == 0){
+            res.render("users/loginUser", { error: "Debes de confirmar tu email para conectarte.", });
+          }else{
+            req.session.user = user;
+            res.redirect("/");
+          }
+
           // sets a cookie with the user's info
-          req.session.user = user;
-          res.redirect("/");
+
         } else {
           console.log("entrando false");
-          res.render("users/loginUser", { error: "La contraseña no es correcta." });
+          res.render("users/loginUser", { error: "La contraseña no es correcta.", });
         }
       });
     }

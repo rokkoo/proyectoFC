@@ -28,6 +28,7 @@ router.post("/", (req, res, next) => {
   req.session.userId = user._id;
   
   if (email.Options(user.email, user)) {
+    console.log("POR AQUI MAIL")
     res.statusCode = 200;
     //res.send('Email sent!');
   }else{
