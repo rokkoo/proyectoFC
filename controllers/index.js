@@ -16,6 +16,7 @@ var i = { name: "alf", edad: "23" };
 let client = redis.createClient();
 const options = { sort: { nombre: 1 } };
 var User = require('./../models/user');
+var bcrypt = require('bcrypt');
 
 
 /** Pagina de inicio */
@@ -119,7 +120,14 @@ router.post("/nuevo", (req, res, next) => {
     notAnimalPerdido: req.body.notAnimalPerdido,
     emailConfirmado: 0,
   });
-  user.save();
+
+  bcrypt.hash(user.contrasena, 10, function (err, hash){
+    user.contrasena = hash;
+    console.log(user);
+    user.save();
+
+  })
+
 
   if (email.Options(user.email, user, "confirmEmail")) {
     res.statusCode = 200;

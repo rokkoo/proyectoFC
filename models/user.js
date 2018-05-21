@@ -1,5 +1,4 @@
 let mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
@@ -47,20 +46,24 @@ let userSchema = new Schema({
     notAnimalPerdido: { type: Boolean},
 }, { versionKey: false });
 
-
+/*
 userSchema.pre('save', function (next) {
     var user = this;
+    console.log(user);
     if(user.emailConfirmado == 0){
+      console.log("crypteo pass");
       bcrypt.hash(user.contrasena, 10, function (err, hash){
         if (err) {
           return next(err);
         }
         user.contrasena = hash;
+        console.log(user);
+        next();
       })
     }
-    next();
+    next();   
 
-  });
+  });*/
 
   let User = mongoose.model('User', userSchema);
   
