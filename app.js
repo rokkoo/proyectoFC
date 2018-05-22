@@ -24,6 +24,7 @@ var session = require('client-sessions');
 var realtime = require('./config/realtime/realTime');
 var streaming = require('./controllers/streaming');
 var confirmarForm = require('./controllers/confirmEmail');
+const bootFacebook = require('./controllers/bootFacebook');
 
 
 var view = '/views';
@@ -92,29 +93,23 @@ app.use(session({
 
 
 app.use('/', index);
-app.use('/baseDatos',baseDatos);
-app.use('/login', loginForm);
-app.use('/perfil', userForm);
-app.use('/registrate', registerForm);
-app.use('/streaming', streaming);
-app.use('/confirmar', confirmarForm);
-
-app.use('/nuevamascota', requireLogin, mascotForm);
 app.use('/mascotas', mascotasForm);
+app.use('/perfil', userForm);
+
+app.use('/baseDatos',baseDatos);
+app.use('/streaming', streaming);
+app.use('webhook', bootFacebook)
+
+app.use('/registrate', registerForm);
+app.use('/confirmar', confirmarForm);
+app.use('/nuevamascota', requireLogin, mascotForm);
+
+app.use('/login', loginForm);
 app.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');
 });
 
-//Conexion con el socket
-// let clients =  new Set();
-// let users = [];
-// io.on('connection', function(socket){
-//   socket.on('streaming', function(video){
-//     console.log('envio')
-//     io.emit('stream', video);
-//   });
-// });
 
 const rClient = redis.createClient();
 
