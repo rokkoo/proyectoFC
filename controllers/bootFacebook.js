@@ -1,4 +1,7 @@
 'use strict'
+const express = require("express");
+const router = express.Router();
+
 //variables de entorno
 require("dotenv").config();
 
@@ -16,7 +19,7 @@ router.get("/", (req, res, next) => {
   });
 
   // Todos eventos de mesenger sera apturados por esta ruta
-app.post("/webhook", function (req, res) {
+router.post("/webhook", function (req, res) {
     // Verificar si el vento proviene del pagina asociada
     if (req.body.object == "page") {
         // Si existe multiples entradas entraas
@@ -75,4 +78,4 @@ function enviar_texto(senderID, response){
 }
 
 
- module.export = router;
+module.exports = router;
