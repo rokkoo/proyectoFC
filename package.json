@@ -38,7 +38,8 @@
     "ws": "3.3.2"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "matar": "killall -9 node"
   },
   "repository": {
