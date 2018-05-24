@@ -23,7 +23,8 @@
               <form action="login" method="post">
                 <input type="email" id="login" class="fadeIn second" name="logEmail" placeholder="Introduce tu e-mail...">
                 <input type="password" id="password" class="fadeIn third" name="logContrasena" placeholder="******************">
-                <input type="submit" class="fadeIn fourth" value="Log In">
+                <input type="submit" class="fadeIn fourth" value="CONECTAR">
+                <a href="/registrate"><input type="button" id="registrar" class="fadeIn fourth" value="¡REGISTRATE!"></a>
               </form>
           
               <!-- Remind Passowrd -->
@@ -33,58 +34,9 @@
           
             </div>
           </div>
-          <!--
-        <div class="wrapper-page animated fadeInDown">
-            <div class="panel panel-color panel-primary">
-                <div class="panel-heading"> 
-                   <h3 class="text-center m-t-10"> Sign In to <strong>Velonic</strong> </h3>
-                </div> 
-
-                <% if(typeof(error) != 'undefined'){%>
-                    <div><%= error %></div>
-                <%}%>
-
-                <form class="form-horizontal m-t-40" action="login" method="post">
-                                            
-                    <div class="form-group ">
-                        <div class="col-xs-12">
-                            <input class="form-control" type="text" name="logEmail" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="form-group ">
-                        
-                        <div class="col-xs-12">
-                            <input class="form-control" type="password" name="logContrasena" placeholder="Password">
-                        </div>
-                    </div>
-
-                    <div class="form-group ">
-                        <div class="col-xs-12">
-                            <label class="cr-styled">
-                                <input type="checkbox" checked>
-                                <i class="fa"></i> 
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group text-right">
-                        <div class="col-xs-12">
-                            <button class="btn btn-purple w-md" type="submit">Log In</button>
-                        </div>
-                    </div>
-                    <div class="form-group m-t-30">
-                        <div class="col-sm-7">
-                            <a href="recoverpw.html"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
-                        </div>
-                        <div class="col-sm-5 text-right">
-                            <a href="register.html">Create an account</a>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-        </div> -->
         <% include ../layouts/scripts %>
     </body>
+    <script>
+        
+    </script>
 </html>
