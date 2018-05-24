@@ -9,8 +9,8 @@ module.exports = function(server) {
         /** Middleware de session 
     });
     */
-  var client = redis.createClient();
-  var chat = redis.createClient();
+  var client = redis.createClient(process.env.REDIS_URL, process.env.Redis_pass||"");
+  var chat = redis.createClient(process.env.REDIS_URL, process.env.Redis_pass||"");
   let origenLat = -38.416097,
       origenLon = -63.616671999999994;
   client.subscribe("images");
