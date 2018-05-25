@@ -4,6 +4,9 @@ var express = require('express');
 var multipart = require('connect-multiparty');
 const Twitter = require('twitter');
 const redis = require('redis');
+const helmet = require('helmet'); 
+const xssFilter = require('x-xss-protection')
+const csrf = require('csurf');
 
 //variables de entorno
 require('dotenv').config();
@@ -68,6 +71,11 @@ function requireLogin (req, res, next) {
     next();
   }
 };
+
+//Seguridad
+app.use(helmet());
+app.disable('x-powered-by');
+app.use(helmet.xssFilter())
 
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON

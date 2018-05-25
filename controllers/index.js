@@ -50,7 +50,7 @@ router.get("/", (req, res, next) => {
         usuario: req.session.user,
         pagina: nombrePagina,
         mascotas: mascotas,
-        moment: moment
+        moment: moment,
       });
     });
 });

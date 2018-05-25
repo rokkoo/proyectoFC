@@ -40,32 +40,32 @@
                                             <% mascotas.forEach(function(mascota){ %>
                                                 <div class="post col-md-6">
                                                     <div class="post-child post-left" style="text-align:left">
-                                                        <img src="<%- mascota.url %>" title="This is a placeholder image">
+                                                        <img src="<%= mascota.url %>" title="This is a placeholder image">
                                                     </div>
                                                     <div class="post-child post-right">
                                                         <h1>
-                                                            <%- mascota.nombre %>
+                                                            <%= mascota.nombre %>
                                                         </h1>
                                                         <hr>
                                                         <!-- <div class="datos">
                                                             <span class=""> Información</span>
                                                             <span class="data">
-                                                                <%- mascota.info %>
+                                                                <%= mascota.info %>
                                                             </span>
                                                         </div> -->
                                                         <div>Edad:
-                                                            <%- mascota.edad %>
+                                                            <%= mascota.edad %>
                                                         </div>
                                                         <div>Tamaño del perro:
                                                             Grande
                                                         </div>
                                                         <div id="fecha">Fecha del post:
-                                                          <span><%- mascota.date%></span>
+                                                          <span><%= mascota.date%></span>
                                                         </div>
                                                         <!-- <div>ID persona:
-                                                            <%- mascota.idUser %>
+                                                            <%= mascota.idUser %>
                                                         </div> -->
-                                                        <a class="btn-circle" href="mascotas/<%- mascota._id%>">&#x21e2;</a>
+                                                        <a class="btn-circle" href="mascotas/<%= mascota._id%>">&#x21e2;</a>
                                                     </div>
                                                 </div>
                                                 <% }); %> 
@@ -88,7 +88,7 @@
 
                 </section>
                 <script>
-                    let mascotas = "<%- JSON.stringify(mascotas) %>"
+                    let mascotas = "<%= JSON.stringify(mascotas) %>"
                 </script>
                 <!-- Main Content Ends -->
                 <% include ./layouts/scripts %>
