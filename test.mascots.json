@@ -1,0 +1,92 @@
+{ 
+    "_id" : ObjectId("5ad37dfede3ec80ab5a82875"), 
+    "nombre" : "Irún, Guipúzcoa, España", 
+    "edad" : NumberInt(10), 
+    "info" : "444564", 
+    "lat" : "43.338097", 
+    "long" : "-1.788848", 
+    "url" : "http://res.cloudinary.com/rokkoo/image/upload/v1523809790/ibywexxxkobqcemzlllj.png", 
+    "date" : "15 de abril de 2018", 
+    "idUser" : "5ad3728013dafe0f7a33c59c", 
+    "comments" : [
+
+    ]
+}
+{ 
+    "_id" : ObjectId("5ad39aba08f883cf2866387b"), 
+    "nombre" : "rioJaneiro", 
+    "edad" : 10.0, 
+    "info" : "444564", 
+    "lat" : "22.9068", 
+    "long" : "43.1729", 
+    "url" : "http://res.cloudinary.com/rokkoo/image/upload/v1523809790/ibywexxxkobqcemzlllj.png", 
+    "date" : "15 de abril de 2018", 
+    "idUser" : "5ad3728013dafe0f7a33c59c", 
+    "comments" : "a"
+}
+{ 
+    "_id" : ObjectId("5ad39aef08f883cf2866387d"), 
+    "nombre" : "londres", 
+    "edad" : 10.0, 
+    "info" : "444564", 
+    "lat" : "51.509865", 
+    "long" : "-0.118092", 
+    "url" : "http://res.cloudinary.com/rokkoo/image/upload/v1523809790/ibywexxxkobqcemzlllj.png", 
+    "date" : "15 de abril de 2018", 
+    "idUser" : "5ad3728013dafe0f7a33c59c", 
+    "comments" : "a"
+}
+{ 
+    "_id" : ObjectId("5ad39dab3a64ee993243780d"), 
+    "nombre" : "dublin", 
+    "edad" : 10.0, 
+    "info" : "444564", 
+    "lat" : "53.350140", 
+    "long" : "-6.266155", 
+    "url" : "http://res.cloudinary.com/rokkoo/image/upload/v1523809790/ibywexxxkobqcemzlllj.png", 
+    "date" : "15 de abril de 2018", 
+    "idUser" : "5ad3728013dafe0f7a33c59c", 
+    "comments" : "a"
+}
+{ 
+    "_id" : ObjectId("5af5d08fedb0ef3cc84c4725"), 
+    "nombre" : "Nueva York, EE. UU.", 
+    "edad" : NumberInt(10), 
+    "info" : "SADASDAS", 
+    "url" : "http://res.cloudinary.com/rokkoo/image/upload/v1526059151/gj3asqokepuvyjbo4ymz.png", 
+    "date" : "11 de mayo de 2018", 
+    "idUser" : "5ad3728013dafe0f7a33c59c", 
+    "lat" : "40.712775", 
+    "long" : "-74.005973", 
+    "comments" : [
+
+    ]
+}
+{ 
+    "_id" : ObjectId("5b02832094927e1fa3906757"), 
+    "nombre" : "Plaiaundi", 
+    "edad" : NumberInt(12213123), 
+    "info" : "asdasd", 
+    "url" : "http://res.cloudinary.com/rokkoo/image/upload/v1526891295/pwai2trlsujo9fbiucwu.jpg", 
+    "date" : "21 de mayo de 2018", 
+    "idUser" : "5b0282f294927e1fa3906756", 
+    "lat" : "43.3081107", 
+    "long" : "-1.8912823", 
+    "comments" : [
+
+    ]
+}
+{ 
+    "_id" : ObjectId("5b0287e894927e1fa3906758"), 
+    "nombre" : "Plaiaundi 2", 
+    "edad" : NumberInt(4), 
+    "info" : "De Plaiaundi", 
+    "url" : "http://res.cloudinary.com/rokkoo/image/upload/v1526892520/ajc9futgnsx8h3jdcpcy.jpg", 
+    "date" : "21 de mayo de 2018", 
+    "idUser" : "5b01c03324419b11642672d4", 
+    "lat" : "43.33823", 
+    "long" : "-1.789272", 
+    "comments" : [
+
+    ]
+}
