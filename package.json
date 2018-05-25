@@ -21,6 +21,8 @@
     "font-awesome": "^4.7.0",
     "geoip-lite": "^1.2.1",
     "helmet": "^3.12.1",
+    "http": "0.0.0",
+    "https": "^1.0.0",
     "ip": "^1.1.5",
     "ipify": "^2.0.0",
     "mdbootstrap": "^4.5.0",
