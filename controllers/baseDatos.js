@@ -13,7 +13,7 @@ const emailData = email.Options();
 var redis = require("redis");
 var veces = [];
 var i = { name: "alf", edad: "23" };
-var client = redis.createClient(process.env.REDIS_URL, process.env.Redis_pass||"");
+var client = redis.createClient();
 const options = { sort: { nombre: 1 } };
 var User = require('./../models/user');
 /** Pagina de inicio */

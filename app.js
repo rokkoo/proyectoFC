@@ -111,7 +111,7 @@ app.get('/logout', function(req, res) {
 });
 
 
-const rClient = redis.createClient(process.env.REDIS_URL, process.env.Redis_pass||"");
+const rClient = redis.createClient();
 
 //Twitter client - appadoptes@gmail.com
 

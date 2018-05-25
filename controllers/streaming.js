@@ -8,7 +8,7 @@ const emailData = email.Options();
 require("dotenv").config();
 
 //cliente que enviara las imagenes
-var client = redis.createClient(process.env.REDIS_URL, process.env.Redis_pass||"");
+var client = redis.createClient();
 
 router.get("/", (req, res, next) => {
   let nombrePagina = "Cliente Streaming";
