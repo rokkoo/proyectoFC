@@ -35,6 +35,10 @@ io.on("longitud", function(data){
 });
 */
 router.get("/", (req, res, next) => {
+  fetch('http://localhost:3000/numero/mascotas')
+  .then( res => res.json())
+  .then(json => console.log(json[0].numero));
+
   veces.push(i);
   client.publish("chat", veces.toString());
 
@@ -54,6 +58,13 @@ router.get("/", (req, res, next) => {
       });
     });
 });
+
+//Nos devuelve la cantidad de mascotas que tenemos en basde de datos 
+// URl de la API https://ancient-waters-92827.herokuapp.com/
+numeroMascotas = async () => {
+  let num = await fetch('https://ancient-waters-92827.herokuapp.com/numero/mascotas')
+  return num; 
+}
 
 var mascotasO;
 router.get("/ander", (req, res, next) => {
@@ -210,6 +221,10 @@ function ordenar(mascotas){
 
   mascotasO=distancias;
 }
-
+router.get('/mapa', (req, res) =>{
+  res.render('maps', {
+    usuario: req.session.user,
+  })
+})
 //////////////////////////////
 module.exports = router;
