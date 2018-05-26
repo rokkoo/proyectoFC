@@ -225,19 +225,11 @@ var port = process.env.PORT || 88;
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e0bb350eca4758c030476a98bc18c80601bb9727
 const httpsPort = process.env.PORTHTTPS || 3010;
 httpsServer.listen(httpsPort, () => {
   console.log(httpsPort+' -> https:');
 }); 
-<<<<<<< HEAD
-=======
-
->>>>>>> e0bb350eca4758c030476a98bc18c80601bb9727
 
 // Exportar la variable 'app' que contiene express para poder usarla-requerirla en otros ficheros
 module.exports = app;
