@@ -6,7 +6,12 @@ const _ = require('lodash');
 var mongoose = require('mongoose');
 var Mascot = require("./models/mascot");
 var User = require('./models/user');
+let router = express.Router();
+const email = require('./modulos/email');
+const emailData = email.Options();
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
 
 const razasJson = require('./razasJson.js');
 
@@ -129,8 +134,91 @@ app.get('/lista/usuarios', (req, res) => {
         res.send(userMap);  
     });  
 })
+
+//Register
+app.post("/usuario/registrar", (req, res, next) => {
+    //Elementos que se capturan en el body
+    console.log(req.body);
+    let user = new User({
+      nombre: req.body.nombre,
+      apellido: req.body.apellido,
+      email: req.body.email,
+      contrasena: req.body.contrasena,
+      confirmarContrasena: req.body.confirmarContrasena
+    });
+    user.save();
+    
+    
+    if (email.Options(user.email, user)) {
+      console.log("POR AQUI MAIL")
+      res.statusCode = 200;
+      //res.send('Email sent!');
+    }else{
+      return res.send('fallo al enviar el email');
+    }
+  
+    res.send("200: "+user._id);
+    // alfonso.save().then(() => console.log(alfonso.username));
+  });
+
+//Login
+
+app.post('/usuarios/login', function (req, res, next) {
+    //const language = req.body.language;
+    //console.log(req.body.username);
+    console.log("EMAIL: "+logEmail);
+    User.findOne({ email: req.body.logEmail }, function(err, user) {
+        if (!user) {
+          //res.render("users/loginUser", { error: "El usuario y contraseña no son válidos." });
+          res.send("Status 400, no aceptado");
+        } else {
+          console.log(user);
+          bcrypt.compare(req.body.logContrasena, user.contrasena, function(err,result) {
+            console.log("entrando bcryps");
+            if (result === true) {
+              console.log("entrando true");
+    
+              if(user.emailConfirmado == 0){
+                res.send("Confirma email");
+                //res.render("users/loginUser", { error: "Debes de confirmar tu email para conectarte.", });
+              }else{
+                req.session.user = user;
+                res.send("Status 200, aceptado");
+                //res.redirect("/");
+              }
+    
+              // sets a cookie with the user's info
+    
+            } else {
+              console.log("entrando false");
+              res.send("Status 400, no aceptado");
+              //res.render("users/loginUser", { error: "La contraseña no es correcta.", });
+            }
+          });
+        }
+      });
+});
+
+//LISTA DE CORREOS DE LOS USUARIOS
+app.get('/lista/usuarios/correos', (req, res) => {
+    var i=0;
+    User.find({}, function(err, users) {
+        var emailMap = [];
+    
+        users.forEach(function(user) {
+          var email = user["email"];
+          emailMap[i] = email;
+          i++;
+          //console.log("baseDatosMascotasLat : "+mascota.de);
+        });
+        //console.log(mascotasMap);
+        res.send(emailMap);  
+    });  
+})
+
+
 app.listen(process.env.PORT || '3000', () => {
     console.log('====================================');
-    console.log('Escuchando en el puerto 300');
+    console.log('Escuchando en el puerto 3000');
     console.log('====================================');
 });
