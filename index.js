@@ -129,4 +129,8 @@ app.get('/lista/usuarios', (req, res) => {
         res.send(userMap);  
     });  
 })
-app.listen('3000');
+app.listen('3000', () => {
+    console.log('====================================');
+    console.log('Escuchando en el puerto 300');
+    console.log('====================================');
+});
