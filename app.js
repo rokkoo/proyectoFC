@@ -77,6 +77,18 @@ app.use(helmet());
 app.disable('x-powered-by');
 app.use(helmet.xssFilter())
 
+//https
+const fs = require('fs');
+const httpR = require('http');
+const https = require('https');
+
+const privateKey  = fs.readFileSync('privateKey.key', 'utf8');
+const certificate = fs.readFileSync('certificate.crt', 'utf8');
+const credentials = {key: privateKey, cert: certificate};
+
+const httpServer = httpR.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
 
 //https
 const fs = require('fs');
@@ -213,11 +225,19 @@ var port = process.env.PORT || 88;
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e0bb350eca4758c030476a98bc18c80601bb9727
 const httpsPort = process.env.PORTHTTPS || 3010;
 httpsServer.listen(httpsPort, () => {
   console.log(httpsPort+' -> https:');
 }); 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e0bb350eca4758c030476a98bc18c80601bb9727
 
 // Exportar la variable 'app' que contiene express para poder usarla-requerirla en otros ficheros
 module.exports = app;
