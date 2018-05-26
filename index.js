@@ -23,8 +23,11 @@ const url = "mongodb://"+username_mongo+":"+pass_mongo+"@"+ip_mongo+":"+port_mon
 mongoose.connect(url);
 module.exports = mongoose;
 
+app.get('/', (req, res) => {
+    res.send('API adopptApp');
+})
 
-app.get('/:raza', (req, res) => {
+app.get('/buscar/:raza', (req, res) => {
     //con "req.params.raza" coge el parámetro que se mana por la url por ejemplo: localhost:3000/pastorAleman, devuelve "pastorAleman"
     //"_.find" busca en el array razas el json que tenga el nombre que le indicas, por ejemplo Pasotor Aleman, y te devuelve el json con todos los datos
     //"razasJson.razas" importa el array con todas las razas
