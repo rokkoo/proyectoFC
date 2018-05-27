@@ -17,6 +17,8 @@ let client = redis.createClient(process.env.REDIS_URL, process.env.Redis_pass||"
 const options = { sort: { nombre: 1 } };
 var User = require('./../models/user');
 var bcrypt = require('bcrypt');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//const razasJson = require('./razasJson.js');
 
 
 /** Pagina de inicio */
@@ -54,6 +56,91 @@ router.get("/", (req, res, next) => {
       });
     });
 });
+
+router.get("/sacarListaRazas", async (req, res, next) => {
+  veces.push(i);
+  client.publish("chat", veces.toString());
+  var razas;
+  var razasFoto = [];
+  
+  razas = primera();
+  //console.log("hola"+razas);
+  razasMap = JSON.parse(razas);
+  async function foto(nombre) {
+    //console.log(nombre);
+    nombre = nombre.toLowerCase();
+    var url = "https://dog.ceo/api/breed/"+nombre+"/images/random";
+    //let url = "https://dog.ceo/api/breeds/" + nombre + "/image/random";
+    var jRandom = await fetch(url);
+    var json = await jRandom.json();
+    //console.log(json);
+    //console.log('INSIDE FOTO '+JSON.stringify(json));
+    return json;
+  }
+  var razasM
+  for(i=0;i<razasMap.length;i++){
+    console.log(i);
+    var nombre = razasMap[i]["nombre"];
+    var fotos;
+    await foto(nombre)
+        .then((resp) => {
+            //String
+            fotos = resp.message;
+            razasFoto[i]={'nombre':nombre,'foto':fotos};
+        });
+  }
+  
+
+  console.log(razasFoto);
+  //razasFoto=JSON.parse(razasFoto);
+  res.render("razas", {
+    usuario: req.session.user,
+    mascotas: razasFoto,
+    moment: moment
+  });
+});
+
+/////////////////LLAMADAS API///////////////////////////////////////
+
+//Llamada 1
+var razasMap = []; 
+function primera(){
+  var razas = [];
+  var theUrl = "https://ancient-waters-92827.herokuapp.com/lista/razas";
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+        razas =  xmlHttp.responseText;
+      }
+    }
+  xmlHttp.open("GET", theUrl, false); // true for asynchronous 
+  xmlHttp.send(null);
+  return razas;
+}
+
+
+//Llamada 2
+var razasMap = []; 
+function segunda(razas){
+  //console.log("RAZAS: "+razas);
+  var url = "https://ancient-waters-92827.herokuapp.com/buscar/";
+  var xmlHttp1 = new XMLHttpRequest();
+  var raza;
+  xmlHttp1.onreadystatechange = function() { 
+    if (xmlHttp1.readyState == 4 && xmlHttp1.status == 200){
+      //callback(xmlHttp.responseText);
+      raza = xmlHttp1.responseText;
+      //console.log("/////////////////////////////////////////////////////////");
+      //console.log(raza);
+    }
+  }
+  url = url+razas["nombre"];
+  //console.log("URL : "+url);
+  xmlHttp1.open("GET", url, false); // true for asynchronous 
+  xmlHttp1.send(null);
+  return raza;
+}
+////////////////////////////////////////////////////////////////////////////
 
 var mascotasO;
 router.get("/ander", (req, res, next) => {
