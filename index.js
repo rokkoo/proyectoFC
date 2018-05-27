@@ -67,7 +67,7 @@ app.get('/lista/razas', (req, res) => {
     var i;
     var lista = [];
     for (i = 0; i < razasJson.razas.length; i++) {
-        var sig = { nombre: _.find(razasJson.razas, { id: i.toString() }).castellano };
+        var sig = { nombre: _.find(razasJson.razas, { id: i.toString() }).ingles };
         lista.push(sig);
     }
     res.send(lista);

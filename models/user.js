@@ -27,12 +27,10 @@ let userSchema = new Schema({
 
       codPostal: {
         type: String,
-        required: true,
       },
 
       direccion: {
         type: String,
-        required: true,
       },
 
       emailConfirmado: {
