@@ -46,7 +46,6 @@ module.exports = function(server) {
 
   //Conexion con mensajes N-N
   io.on("connection", function(socket) {
-
     socket.on("latitud", function(data){    
       console.log("cliente cliente latitud: "+data);
         origenLat =  data;
