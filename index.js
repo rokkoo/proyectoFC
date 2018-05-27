@@ -119,6 +119,22 @@ app.get('/numero/mascotas', (req, res) => {
         res.send(numeroMascotas);  
     });  
 })
+
+//NUMERO DE USUARIOS
+app.get('/numero/usuarios', (req, res) => {
+    var i=0;
+    User.find({}, function(err, users) {
+        var userMap = [];
+    
+        users.forEach(function(user) {
+          i++;
+          //console.log("baseDatosMascotasLat : "+mascota.de);
+        });
+        //console.log(mascotasMap);
+        var numeroUsers = "{Numero usuarios:"+i+"}";
+        res.send(numeroUsers);  
+    });  
+})
 //LISTA DE USUARIOS
 app.get('/lista/usuarios', (req, res) => {
     var i=0;
