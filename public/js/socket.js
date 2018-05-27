@@ -3,11 +3,7 @@ let my_username = '';
 let myChats = new Array({email: 'a@a.com',msg:'asdasd'},{email: 'b@a.com',msg:'a'},{email: 'c@a.com',msg:'b'});
 const myUsers = new Set();
 const usuarios = new Array();
-<<<<<<< HEAD
-const server = '192.168.1.11:3000'
-=======
 const server = '/'
->>>>>>> 6598264a38774d4c853b9b8cdfe5136a92aa3a43
 var socket = io.connect(server);
 comprobar = email => {
     //comprobamos que el array tenga el email
