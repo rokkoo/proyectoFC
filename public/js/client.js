@@ -127,7 +127,7 @@
                 type: 'POST',
                 data: JSON.stringify(data),
                 contentType: 'application/json',
-                url: 'http://localhost:3000/geo'						
+                url: '/geo'						
             });
       }
       function pasarValores(){

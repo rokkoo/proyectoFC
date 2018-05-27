@@ -3,7 +3,7 @@ let router = express.Router();
 var redis = require('redis');
 var moment = require('moment');
 
-var client = redis.createClient();
+var client = redis.createClient(process.env.REDIS_URL, process.env.Redis_pass||"");
 /** Imagen uploader*/
 var cloudinary = require('./../config/cloudinary/cloudinary');
 
