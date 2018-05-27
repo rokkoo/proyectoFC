@@ -67,7 +67,7 @@ numeroMascotas = async () => {
 }
 
 var mascotasO;
-router.get("/ander", (req, res, next) => {
+router.get("/geo", (req, res, next) => {
   var conValor = false;
   veces.push(i);
   client.publish("chat", veces.toString());

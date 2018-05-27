@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
         Mascot.find({idUser: req.session.user._id}, function (err, mascotas) {
             res.render('users/profileUser',{
                 usuario : req.session.user,
+                user : req.session.user,
                 mascotas : mascotas,
                 pagina : nombrePagina,
             });    

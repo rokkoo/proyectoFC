@@ -51,7 +51,7 @@
           <li>
             <a href="${url}" target="_blank">
                 <span class="pull-left"><i class="fa fa-user-plus fa-2x text-info"></i></span>
-                <span>${twitt.user}<br><small class="text-muted">5 minutes ago</small></span>
+                <span>${twitt.user}<br><small class="text-muted">Hace unos instantes</small></span>
             </a>
           </li>`);
       });

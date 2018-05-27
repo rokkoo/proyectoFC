@@ -90,17 +90,7 @@ const httpServer = httpR.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
 
-//https
-const fs = require('fs');
-const httpR = require('http');
-const https = require('https');
 
-const privateKey  = fs.readFileSync('privateKey.key', 'utf8');
-const certificate = fs.readFileSync('certificate.crt', 'utf8');
-const credentials = {key: privateKey, cert: certificate};
-
-const httpServer = httpR.createServer(app);
-const httpsServer = https.createServer(credentials, app);
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
 app.use(bodyParser.json()); // to support JSON bodies
